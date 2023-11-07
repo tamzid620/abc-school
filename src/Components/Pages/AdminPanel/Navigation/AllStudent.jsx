@@ -42,42 +42,64 @@ const AllStudent = () => {
   }, [navigate]);
   console.log(allStudents.student);
 
-// delete section
-    const handleDelete = (studentId) => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const headers = {
-        accept: "application/json",
-        Authorization: "Bearer " + user.token,
-      };
-  
-      axios
-        .delete(`http://127.0.0.1:8000/api/delete-student/${studentId}`, {
-          headers: headers,
-        })
-        .then(() => {
-          setPendStudents((prevStudents) =>
-            prevStudents.filter((student) => student.student_id !== studentId)
-          );
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Student deleted successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/pendingStudent");
-        })
-        .catch((error) => {
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Error deleting student",
-            text: error.message,
-            showConfirmButton: true,
-          });
-          navigate("/pendingStudent");
-        });
+  // delete section
+  const handleDelete = (studentId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
     };
+
+    axios
+      .delete(`http://127.0.0.1:8000/api/delete-student/${studentId}`, {
+        headers: headers,
+      })
+      .then(() => {
+        setAllStudents((prevStudents) =>
+          prevStudents.filter((student) => student.student_id !== studentId)
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Student deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/pendingStudent");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting student",
+          text: error.message,
+          showConfirmButton: true,
+        });
+        navigate("/pendingStudent");
+      });
+  };
+
+  // edit section
+  // const handleEdit =(studentId) => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   const headers = {
+  //     accept: "application/json",
+  //     Authorization: "Bearer " + user.token,
+  //   };
+
+  //   axios
+  //     .get(`/${studentId}`, {
+  //       headers: headers,
+  //     })
+  //     .then(() => {
+  //       setAllStudents((prevStudents) =>
+  //         prevStudents.filter((student) => student.student_id !== studentId)
+  //       );
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   return (
     <div className="flex justify-between">
@@ -162,33 +184,35 @@ const AllStudent = () => {
                         <td>{student.regNo}</td>
                         <td>{student.class}</td>
                         <td className="flex gap-2">
-{/* Edit button  */}
-                          <Link to="/studentEdit">
+                          {/* Edit button  */}
+                          <Link to={`/studentEdit/${student.id}`}>
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>
                           </Link>
-{/* Details button  */}
+
+                          {/* Details button  */}
                           <Link to="/adminPayment">
                             <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                               Details
                             </button>
                           </Link>
-{/* Delete button   */}
-                          <button 
-                          onClick={() => handleDelete(student.id)}
-                          className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white">
+                          {/* Delete button   */}
+                          <button
+                            onClick={() => handleDelete(student.id)}
+                            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+                          >
                             Delete
                           </button>
                         </td>
                       </tr>
                     ))}
-                    {/* Edit button  */}
-                    <Link to="/studentEdit">
-                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                              Edit
-                            </button>
-                          </Link>
+                  {/* Edit button  */}
+                  {/* <Link to={`/studentEdit/${student.id}`}>
+                    <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                      Edit
+                    </button>
+                  </Link> */}
                 </tbody>
               </table>
             </div>

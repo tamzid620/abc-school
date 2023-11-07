@@ -5,8 +5,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const StudentEdit = () => {
+  const {studentId} = useParams();
+  // const [studentData, setStudentData] = useState([]);
+
 // post method ------------
   const [name, setName] = useState("");
   const [fatherName, setfatherName] = useState("");
@@ -20,6 +24,7 @@ const StudentEdit = () => {
   const [regNo, setregNo] = useState("");
   const [wclass, setwclass] = useState("");
   const [section, setsection] = useState("");
+  const [id, setid] = useState("");
   const navigate = useNavigate();
 
 // handle control --------------------
@@ -53,6 +58,9 @@ const StudentEdit = () => {
   const handleSectionChange = (e) => {
     setsection(e.target.value);
   };
+  const handleIdChange = (e) => {
+    setid(e.target.value);
+  };
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -70,12 +78,49 @@ const StudentEdit = () => {
   const handlephoneNoChange = (e) => {
     setphoneNo(e.target.value);
   };
+  
+  // get method ----------------------
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+  
+    axios
+      .get(`/${studentId}`, {
+        headers: headers,
+      })
+      .then((response) => {
+        // Assuming the response contains the student data
+        const studentData = response.data;
+        setid(studentData.id);
+        setName(studentData.name);
+        setfatherName(studentData.fatherName);
+        setmotherName(studentData.motherName);
+        setBirthDate(studentData.birthDate);
+        setEmail(studentData.email);
+        setAddress(studentData.address);
+        setphoneNo(studentData.phoneNo);
+        setImage(studentData.image);
+        setrollNo(studentData.rollNo);
+        setregNo(studentData.regNo);
+        setwclass(studentData.wclass);
+        setsection(studentData.section);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
+  }, [studentId]); 
+  
 
   // handle button section ----------------
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const data = new FormData();
+    data.append("name", id);
     data.append("name", name);
     data.append("fatherName", fatherName);
     data.append("motherName", motherName);
@@ -90,6 +135,7 @@ const StudentEdit = () => {
     data.append("section", section);
     console.log(data);
     console.log("Selected Image:", image);
+
 // post method ------------------------
     axios.post('http://127.0.0.1:8000/api/student-reg', data,)
       .then((res) => {
@@ -106,6 +152,7 @@ const StudentEdit = () => {
       .catch((error) => {
         console.error('An error occurred:', error);
       });
+    setid('');
     setName('');
     setfatherName('');
     setmotherName('');
@@ -119,28 +166,6 @@ const StudentEdit = () => {
     setwclass('');
     setsection('');
   };
-  // get method ----------------------
-  useEffect(() => {
-  axios.get('')
-  .then((res) => {
-    const studentData = res.data;
-    setName(studentData.name);
-    setfatherName(studentData.fatherName);
-    setmotherName(studentData.motherName);
-    setBirthDate(studentData.birthDate);
-    setEmail(studentData.email);
-    setAddress(studentData.address);
-    setphoneNo(studentData.phoneNo);
-    setImage(studentData.image);
-    setrollNo(studentData.rollNo);
-    setregNo(studentData.regNo);
-    setwclass(studentData.wclass);
-    setsection(studentData.section);
-  })
-  .catch((error) => {
-    console.error('An error occurred while fetching data:', error);
-  });
-}, []);
 
   return (
     <div className="flex justify-between">
@@ -166,6 +191,20 @@ const StudentEdit = () => {
           onSubmit={handleSubmit}
           className="bg-gray-100 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
         >
+          {/* id section   */}
+          <div>
+            <label htmlFor="id"></label>
+            <input
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+              // placeholder="Add Name"
+              type="hidden"
+              name="id"
+              id="id"
+              value={id}
+              onChange={handleIdChange}
+            />
+          </div>
           {/* name section   */}
           <div>
             <label htmlFor="name">Name:</label>
@@ -343,6 +382,7 @@ const StudentEdit = () => {
           </div>
 
           <button
+
             className="bg-blue-300 hover:bg-blue-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
             type="submit"
           >

@@ -127,12 +127,6 @@ const PendingStudent = () => {
                     </button>
                   </div>
                 </div>
-                {/* add button  */}
-                {/* <div>
-                  <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                    Add
-                  </button>
-                </div> */}
               </div>
               <table className="table table-lg table-pin-rows table-pin-cols border">
                 {/* head */}
@@ -185,7 +179,9 @@ const PendingStudent = () => {
                     ))}
                      {/* Edit button  */}
                      <Link to="/studentEdit">
-                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                            <button
+                            
+                            className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>
                           </Link>

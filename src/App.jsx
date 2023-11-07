@@ -1,12 +1,15 @@
-import './App.css'
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import StudentEdit from "./Components/Pages/AdminPanel/Navigation/StudentEdit"; 
+// function App() {
+//   return (
+//     <Router>
+//       <Switch>
+//         {/* Other routes */}
+//         <Route path="/studentEdit/:studentId" component={StudentEdit} />
+//       </Switch>
+//     </Router>
+//   );
+// }
 
-function App() {
+// export default App;
 
-  return (
-    <>
-    
-    </>
-  )
-}
-
-export default App
