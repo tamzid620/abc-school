@@ -9,7 +9,7 @@ const PendingStudent = () => {
   const [pendStudents, setPendStudents] = useState([]);
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -85,7 +85,7 @@ const PendingStudent = () => {
       </div>
       {/* table div  */}
       <div className="">
-        <div className="lg:-ms-20">
+        <div className="lg:-ms-[290px] md:-ms-20 ">
           <SearchPanel />
         </div>
         <div className="flex justify-center">
@@ -156,35 +156,32 @@ const PendingStudent = () => {
                         <td>{student.regNo}</td>
                         <td>{student.class}</td>
                         <td className="flex gap-2">
- {/* Edit button  */}
-                          <Link to="/studentEdit">
+                          {/* Edit button  */}
+                          <Link to={`/studentEdit/${student.id}`}>
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>
                           </Link>
- {/* Approve button  */}
+                          {/* Approve button  */}
                           <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                             Approve
                           </button>
- {/* Delete button  */}
+                          {/* Delete button  */}
                           <button
                             onClick={() => handleDelete(student.id)}
                             className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
                           >
                             Delete
                           </button>
-
                         </td>
                       </tr>
                     ))}
-                     {/* Edit button  */}
-                     <Link to="/studentEdit">
-                            <button
-                            
-                            className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                              Edit
-                            </button>
-                          </Link>
+                  {/* Edit button  */}
+                  <Link to="/studentEdit">
+                    <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                      Edit
+                    </button>
+                  </Link>
                 </tbody>
               </table>
             </div>

@@ -79,7 +79,7 @@ const StudentEdit = () => {
     setphoneNo(e.target.value);
   };
   
-  // get method ----------------------
+  // get  method ----------------------
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -115,7 +115,7 @@ const StudentEdit = () => {
   }, [studentId]); 
   
 
-  // handle button section ----------------
+  // post section ----------------
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -140,31 +140,37 @@ const StudentEdit = () => {
     axios.post('http://127.0.0.1:8000/api/student-reg', data,)
       .then((res) => {
         console.log('Data:', res.data);
+        setid('');
+        setName('');
+        setfatherName('');
+        setmotherName('');
+        setBirthDate('');
+        setEmail('');
+        setAddress('');
+        setphoneNo('');
+        setImage('');
+        setrollNo('');
+        setregNo('');
+        setwclass('');
+        setsection('');
         Swal.fire({
           position: 'center',
-          icon: 'warning',
-          title: res.data.message,
+          icon: 'success',
+          title: 'updated Data successfully',
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate('/');
+        navigate('/allStudent');
       })
       .catch((error) => {
-        console.error('An error occurred:', error);
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: ('An error occurred:', error),
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
-    setid('');
-    setName('');
-    setfatherName('');
-    setmotherName('');
-    setBirthDate('');
-    setEmail('');
-    setAddress('');
-    setphoneNo('');
-    setImage('');
-    setrollNo('');
-    setregNo('');
-    setwclass('');
-    setsection('');
   };
 
   return (
@@ -173,8 +179,8 @@ const StudentEdit = () => {
         <Drawer />
       </div>
       {/* table div  */}
-      <div className="lg:me-[200px]">
-        <div className="lg:-ms-20">
+      <div className="lg:me-[325px]">
+        <div className="lg:-ms-[290px] md:-ms-20 ">
           <SearchPanel />
         </div>
         <div className="flex justify-center mt-20">
@@ -382,8 +388,7 @@ const StudentEdit = () => {
           </div>
 
           <button
-
-            className="bg-blue-300 hover:bg-blue-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
+           className="bg-blue-300 hover:bg-blue-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
             type="submit"
           >
             Save

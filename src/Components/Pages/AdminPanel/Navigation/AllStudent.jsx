@@ -108,7 +108,7 @@ const AllStudent = () => {
       </div>
       {/* table div  */}
       <div className="">
-        <div className="lg:-ms-20">
+        <div className="lg:-ms-[290px] md:-ms-20 ">
           <SearchPanel />
         </div>
         <div className="flex justify-center">
