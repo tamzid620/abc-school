@@ -192,7 +192,7 @@ const AllStudent = () => {
                           </Link>
 
                           {/* Details button  */}
-                          <Link to="/adminPayment">
+                          <Link to={`/adminPayment/${student.id}`}>
                             <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                               Details
                             </button>

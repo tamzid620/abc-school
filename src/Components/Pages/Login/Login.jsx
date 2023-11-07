@@ -36,7 +36,7 @@ const data = { email, password }
 const handleSubmit = (e) => {
   e.preventDefault();
   console.log('Email:', email, 'Password:', password);
-  axios.post(`http://sml4kzlfjc.ap.loclx.io/api/login`, data)
+  axios.post(``, data)
   .then(res => {
       if (res.data.status === "201" ) {
           Swal.fire({
