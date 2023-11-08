@@ -28,7 +28,7 @@ const PendingStudent = () => {
         Authorization: "Bearer " + user.token,
       };
       axios
-        .get(`http://127.0.0.1:8000/api/student-list`, {
+        .get(`http://127.0.0.1:8000/api/pending-student-list`, {
           headers: headers,
         })
         .then((res) => {
@@ -157,7 +157,7 @@ const PendingStudent = () => {
                         <td>{student.class}</td>
                         <td className="flex gap-2">
                           {/* Edit button  */}
-                          <Link to={`/studentEdit/${student.id}`}>
+                          <Link to={`/AdminStudentEdit/${student.id}`}>
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>

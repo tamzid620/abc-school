@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const StudentEdit = () => {
+const AdminStudentEdit = () => {
   const { studentId } = useParams();
   // const [studentData, setStudentData] = useState([]);
 
@@ -88,7 +88,7 @@ const StudentEdit = () => {
     };
 
     axios
-      .get(`/${studentId}`, {
+      .get(`http://127.0.0.1:8000/api/student-edit/${studentId}`, {
         headers: headers,
       })
       .then((response) => {
@@ -387,4 +387,4 @@ const StudentEdit = () => {
   );
 };
 
-export default StudentEdit;
+export default AdminStudentEdit;

@@ -99,12 +99,10 @@ const StudentDetails = () => {
                     <span className="font-bold text-xl">Name:</span>
                     {studentData?.user.name}
                   </h1>
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
                   <h1>
                     <span className="font-bold text-xl">Father's Name:</span>
                     {studentData?.user.fatherName}
                   </h1>
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
                   <h1>
                     <span className="font-bold text-xl">Mother's Name:</span>
                     {studentData?.user.motherName}

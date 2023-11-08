@@ -1,45 +1,34 @@
 import axios from "axios";
-import Drawer from "../AdminPanel/Dashboard/SearchPanel/Drawer";
-import SearchPanel from "../AdminPanel/Dashboard/SearchPanel/SearchPanel";
+import Drawer from "../Dashboard/SearchPanel/Drawer";
+import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import {  useParams } from "react-router-dom";
 
-const AdminPayment = () => {
+const  AdminStudentDetails= () => {
+  const { studentId } = useParams();
+
   const [studentData, setStudentData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      Swal.fire({
-        position: "center",
-        icon: "warning",
-        title: "You have to Login first",
-        showConfirmButton: false,
-        timer: 1500,
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    // get method -------------------
+    axios
+      .get(`http://127.0.0.1:8000/api/admin-student-detail/${studentId}`, {
+        headers: headers,
+      })
+      .then((res) => {
+        setStudentData(res.data);
+      })
+      .catch((error) => {
+        setStudentData(error);
       });
-      navigate("/adminlogin");
-    } else {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const headers = {
-        accept: "application/json",
-        Authorization: "Bearer " + user.token,
-      };
-      // get method -------------------
-      axios
-        .get(`http://sml4kzlfjc.ap.loclx.io/api/student-detail`, {
-          headers: headers,
-        })
-        .then((res) => {
-          setStudentData(res.data);
-        })
-        .catch((error) => {
-          setStudentData(error);
-        });
-    }
-  }, [navigate]);
+  }, [studentId]);
   console.log(studentData);
 
   return (
@@ -75,12 +64,10 @@ const AdminPayment = () => {
                       <span className="font-bold text-xl">Name:</span>
                       {studentData?.user.name}
                     </h1>
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
                     <h1>
                       <span className="font-bold text-xl">Father's Name:</span>
                       {studentData?.user.fatherName}
                     </h1>
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
                     <h1>
                       <span className="font-bold text-xl">Mother's Name:</span>
                       {studentData?.user.motherName}
@@ -115,9 +102,33 @@ const AdminPayment = () => {
                       <span className="font-bold text-xl">Registration:</span>
                       {studentData?.user.registration}
                     </h1>
+                    
                   </div>
                 </div>
               )}
+              <div className="">
+                      <div className="overflow-x-auto">
+                        <table className="table">
+                          {/* head */}
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>month</th>
+                              <th>amount</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {studentData.user && (
+                            <tr className="bg-base-200">
+                              <th></th>
+                              <td>{}</td>
+                              <td>{}</td>
+                            </tr> 
+                          )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
             </div>
           </div>
         </div>
@@ -126,4 +137,4 @@ const AdminPayment = () => {
   );
 };
 
-export default AdminPayment;
+export default AdminStudentDetails;

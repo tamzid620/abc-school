@@ -37,17 +37,17 @@ const SignUP = () => {
   };
 
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
+    const image = e.target.files[0];
+    if (image) {
       const reader = new FileReader();
-
       reader.onload = (e) => {
         const imagePreviewURL = e.target.result;
         setImage(imagePreviewURL);
       };
-      reader.readAsDataURL(selectedImage);
+      reader.readAsDataURL(image);
     }
   };
+  
 
   const handlephoneNoChange = (e) => {
     setphoneNo(e.target.value);
@@ -65,33 +65,41 @@ const SignUP = () => {
     data.append("email", email);
     data.append("password", password);
     data.append("phoneNo", phoneNo);
-    data.append("image", image);
+    data.append("image", image)
     console.log(data);
     console.log("Selected Image:", image);
 
-    axios.post('http://127.0.0.1:8000/api/student-reg', data,)
+    axios
+      .post("http://127.0.0.1:8000/api/student-reg", data)
       .then((res) => {
-        console.log('Data:', res.data);
+        console.log("Data:", res.data);
         Swal.fire({
-          position: 'center',
-          icon: 'warning',
+          position: "center",
+          icon: "success",
           title: res.data.message,
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => {
-        console.error('An error occurred:', error);
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: ("An error occurred:", error),
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
-    setName('');
-    setfatherName('');
-    setmotherName('');
-    setBirthDate('');
-    setEmail('');
-    setPassword('');
-    setphoneNo('');
-    setImage('');
+    // setName('');
+    // setfatherName('');
+    // setmotherName('');
+    // setBirthDate('');
+    // setEmail('');
+    // setPassword('');
+    // setphoneNo('');
+    // setImage('');
+    // setImage('');
   };
 
   const backgroundStyles = {
@@ -135,6 +143,7 @@ const SignUP = () => {
 
         {/* form section  */}
         <form
+          // encType="multipart/form-data"
           onSubmit={handleSubmit}
           className="bg-gray-100 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
         >
@@ -282,7 +291,7 @@ const SignUP = () => {
           <hr className="my-5 border border-blue-300" />
           <h1 className="flex justify-center items-center">
             copyright ©{" "}
-            <img className="w-[120px] ms-2" src={marketien} alt="" />
+            <img className="w-[120px] ms-2" src={marketien} alt="" />0
           </h1>
         </form>
       </div>

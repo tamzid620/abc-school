@@ -28,8 +28,8 @@ import Routine from "./Components/Pages/Academic/Routine";
 import ApplyOnline from "./Components/Pages/Admission/ApplyOnline";
 import ApplyMethod from "./Components/Pages/Admission/ApplyMethod";
 import OurHistory from "./Components/Pages/About/OurHistory";
-import StudentEdit from "./Components/Pages/AdminPanel/Navigation/StudentEdit";
-import AdminPayment from "./Components/Pages/Payment/AdminPayment";
+import AdminStudentDetails from "./Components/Pages/AdminPanel/Navigation/AdminStudentDetails";
+import AdminStudentEdit from "./Components/Pages/AdminPanel/Navigation/AdminStudentEdit";
 
 const router = createBrowserRouter([
   {
@@ -139,12 +139,12 @@ const router = createBrowserRouter([
         element: <AllStudent />,
       },
       {
-        path: "/studentEdit/:studentId",
-        element: <StudentEdit />,
+        path: "/AdminStudentEdit/:studentId",
+        element: <AdminStudentEdit />,
       },
       {
-        path: "/adminPayment/:studentId",
-        element: <AdminPayment />,
+        path: "/AdminStudentDetails/:studentId",
+        element: <AdminStudentDetails/>,
       },
     ],
   },
