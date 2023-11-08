@@ -64,7 +64,7 @@ const PendingStudent = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/pendingStudent");
+        window.location.reload();
       })
       .catch((error) => {
         Swal.fire({
@@ -74,9 +74,45 @@ const PendingStudent = () => {
           text: error.message,
           showConfirmButton: true,
         });
-        navigate("/pendingStudent");
       });
   };
+
+  // approval section
+  const handleApprove = (studentId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    axios
+      .get(`http://127.0.0.1:8000/api/student-approve/${studentId}`, {
+        headers: headers,
+      })
+      .then(() => {
+        setPendStudents((prevStudents) =>
+          prevStudents.filter((student) => student.student_id !== studentId)
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Student deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.reload();
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting student",
+          text: error.message,
+          showConfirmButton: true,
+        });
+      });
+  };
+
 
   return (
     <div className="flex justify-between">
@@ -163,7 +199,9 @@ const PendingStudent = () => {
                             </button>
                           </Link>
                           {/* Approve button  */}
-                          <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+                          <button 
+                          onClick={() => handleApprove(student.id)}
+                          className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                             Approve
                           </button>
                           {/* Delete button  */}

@@ -139,7 +139,7 @@ const AdminStudentEdit = () => {
     console.log("Selected Image:", image);
 // post method --------------
     axios
-      .post("http://127.0.0.1:8000/api/student-reg", data, {
+      .post("http://127.0.0.1:8000/api/student-update", data, {
         headers: headers,
       })
       .then((res) => {

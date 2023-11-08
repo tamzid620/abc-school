@@ -1,11 +1,12 @@
+
 import axios from "axios";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import { useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const  AdminStudentDetails= () => {
+const AdminStudentDetails = () => {
   const { studentId } = useParams();
 
   const [studentData, setStudentData] = useState([]);
@@ -102,33 +103,33 @@ const  AdminStudentDetails= () => {
                       <span className="font-bold text-xl">Registration:</span>
                       {studentData?.user.registration}
                     </h1>
-                    
                   </div>
                 </div>
               )}
-              <div className="">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          {/* head */}
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>month</th>
-                              <th>amount</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          {studentData.user && (
-                            <tr className="bg-base-200">
-                              <th></th>
-                              <td>{}</td>
-                              <td>{}</td>
-                            </tr> 
-                          )}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+            </div>
+            <div className="">
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>month</th>
+                      <th>amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {studentData.user &&
+                      studentData.payment.map((payment, index) => (
+                        <tr className="bg-base-200" key={index}>
+                          <th></th>
+                          <td>{payment.months.join(", ")}</td>
+                          <td>{payment.amount}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
