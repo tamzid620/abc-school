@@ -185,14 +185,14 @@ const AllStudent = () => {
                         <td>{student.class}</td>
                         <td className="flex gap-2">
                           {/* Edit button  */}
-                          <Link to={`/AdminStudentEdit/${student.id}`}>
+                          <Link to={`/adminStudentEdit/${student.id}`}>
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>
                           </Link>
 
                           {/* Details button  */}
-                          <Link to={`/AdminStudentDetails/${student.id}`}>
+                          <Link to={`/adminStudentDetails/${student.id}`}>
                             <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                               Details
                             </button>

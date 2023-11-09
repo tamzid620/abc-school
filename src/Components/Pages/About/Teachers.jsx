@@ -7,7 +7,7 @@ const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-    fetch("https://nmx0zurxps.ap.loclx.io/api/teacher-listApi")
+    fetch("/api/teacher-listApi")
       .then((res) => res.json())
       .then((data) => setTeachers(data));
   }, []);

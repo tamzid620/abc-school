@@ -6,8 +6,8 @@ import { MdArrowDropDown } from "react-icons/md";
 
 const Drawer = () => {
     return (
-        <div className="z-10 ">
-        <div className="drawer lg:drawer-open fixed ">
+        <div className="">
+        <div className="z-10 drawer lg:drawer-open fixed bg-gray-100">
           <input id="my-drawer" type="checkbox" className="drawer-toggle " />
           <div className="drawer-content flex flex-col items-center justify-center">
             {/* Page content here */}
@@ -33,7 +33,7 @@ const Drawer = () => {
                 </li>
               </Link>
 
-{/* Student Information  */}
+{/* Student Information section */}
                 <details className="dropdown mb-3">
                   <summary
                    className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
@@ -44,35 +44,37 @@ const Drawer = () => {
                     <li><a href="/allStudent">All Students</a></li>
                   </ul>
                 </details>
-
+{/* Teachers section */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500"><IoIosSpeedometer className="text-green-500" size={20} /> Option-3</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500"><IoIosSpeedometer className="text-green-500" size={20} /> 
+                <a href="/adminTeachers">Teachers</a>
+                </span>
               </li>
-
+{/* Employess section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500"><IoIosSpeedometer className="text-yellow-500" size={20} /> Option-4</span>
               </li>
-
+{/*Notice section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500"><IoIosSpeedometer className="text-orange-500" size={20} /> Option-5</span>
               </li>
-
+{/*Event section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500"><IoIosSpeedometer className="text-gray-500" size={20} /> Option-6</span>
               </li>
-
+{/*Payment section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500"><IoIosSpeedometer className="text-teal-500" size={20} /> Option-7</span>
               </li>
-
+{/*Routine section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-pink-500"><IoIosSpeedometer className="text-pink-500" size={20} /> Option-8</span>
               </li>
-
+{/*Syllabus section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-indigo-500"><IoIosSpeedometer className="text-indigo-500" size={20} /> Option-9</span>
               </li>
-
+{/*Examination section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-violet-500"><IoIosSpeedometer className="text-violet-500" size={20} /> Option-10</span>
               </li>

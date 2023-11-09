@@ -5,8 +5,9 @@ import { ProfileMenu } from "./ProfileMenu";
 
 const SearchPanel = () => {
   return (
-    <div className="flex justify-between items-center fixed z-10 bg-blue-600 lg:px-16 py-2 lg:-ms-10 sm: px-28 sm: ms-10">
-
+    <div>
+<div className="flex justify-between items-center fixed
+ bg-blue-600 lg:px-16 py-2 lg:-ms-10 sm: px-28 sm: ms-10 z-10">
       {/* search section  */}
       <div className=" sm: hidden lg:flex md:flex">
         <input type="text" placeholder="Search Setting" className="input input-bordered input-success lg:w-[700px] md:w-[350px]" />
@@ -36,6 +37,8 @@ const SearchPanel = () => {
         {/* profile section  */}
         <ProfileMenu />
       </div>
+</div>
+
     </div>
   );
 };

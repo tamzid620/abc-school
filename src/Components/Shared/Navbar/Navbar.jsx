@@ -22,6 +22,11 @@ const Navbar = () => {
           <a>Home</a>
         </li>
       </Link>
+      <Link to="/dp">
+        <li>
+          <a>AdminEdit</a>
+        </li>
+      </Link>
       <li tabIndex={0}>
         <details
           open={activeDropdown === "academic"}
@@ -185,7 +190,8 @@ const Navbar = () => {
                 <a href="/login">Log In</a>
               </Button>
               <Button variant="gradient" size="sm">
-                <a href="/signup">Sign Up</a>
+                {/* <a href="/signup">Sign Up</a> */}
+                <a href="/registration">Sign Up</a>
               </Button>
             </div>
             <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
@@ -198,7 +204,8 @@ const Navbar = () => {
                 <a href="/login">Log In</a>
               </Button>
               <Button variant="gradient" size="sm" fullWidth>
-                <a href="/signup">Sign Up</a>
+                {/* <a href="/signup">Sign Up</a> */}
+                <a href="/registration">Sign Up</a>
               </Button>
             </div>
           </div>

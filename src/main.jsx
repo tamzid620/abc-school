@@ -28,8 +28,10 @@ import Routine from "./Components/Pages/Academic/Routine";
 import ApplyOnline from "./Components/Pages/Admission/ApplyOnline";
 import ApplyMethod from "./Components/Pages/Admission/ApplyMethod";
 import OurHistory from "./Components/Pages/About/OurHistory";
-import AdminStudentEdit from "./Components/Pages/AdminPanel/Navigation/AdminStudentEdit";
+import AdminStudentEdit from "./Components/Pages/AdminPanel/Navigation/AdminStudentEdit.jsx"
 import AdminStudentDetails from "./Components/Pages/AdminPanel/Navigation/AdminStudentDetails";
+import Registration from "./Components/Pages/SignUp/Registration";
+import AdminTeachers from "./Components/Pages/AdminPanel/Navigation/AdminTeachers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -121,6 +123,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/registration",
+        element: <Registration />,
+      },
 // admin panel route ---------------------------
       {
         path: "/adminlogin",
@@ -139,12 +145,16 @@ const router = createBrowserRouter([
         element: <AllStudent />,
       },
       {
-        path: "/AdminStudentEdit/:studentId",
-        element:<AdminStudentEdit/> ,
+        path: "/adminStudentEdit/:studentId",
+        element: <AdminStudentEdit/>,
       },
       {
-        path: "/AdminStudentDetails/:studentId",
+        path: "/adminStudentDetails/:studentId",
         element:<AdminStudentDetails/>,
+      },
+      {
+        path: "/adminTeachers",
+        element:<AdminTeachers/>,
       },
     ],
   },
