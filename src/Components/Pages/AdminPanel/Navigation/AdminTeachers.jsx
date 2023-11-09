@@ -43,6 +43,43 @@ useEffect(() => {
 
 console.log(adminTeachers.teacher);
 
+  // delete section
+  const handleDelete = (studentId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    axios
+      .delete(`http://127.0.0.1:8000/api/delete-student/${studentId}`, {
+        headers: headers,
+      })
+      .then(() => {
+        setAdminTeachers((prevStudents) =>
+          prevStudents.filter((student) => student.student_id !== studentId)
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Student deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminTeachers");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting student",
+          text: error.message,
+          showConfirmButton: true,
+        });
+        navigate("/adminTeachers");
+      });
+  };
+
   return (
     <div className="flex justify-between">
       <div className=" w-full">
@@ -54,7 +91,7 @@ console.log(adminTeachers.teacher);
           <SearchPanel/>
         </div>
         <div className="flex justify-center">
-          <div className="mt-20 w-full bg-blue-gray-300">
+          <div className="mt-20 w-full lg:z-10 md:z-0 sm: z-0">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
               Add Teachers
@@ -113,25 +150,29 @@ console.log(adminTeachers.teacher);
                   </tr>
                 </thead>
                 <tbody >
-{adminTeachers.teacher.map((teacher) => (
+{adminTeachers.teacher && adminTeachers.teacher.map((teacher) => (
                   <tr key={teacher.id}>
                     <div className="mask mask-squircle w-12 h-12">
                       <td> <img src={teacher.image}alt="teahcer's photo"/> </td>
                     </div>
 
-                    <td> Amma</td>
-                    <td>Assistant Teacher</td>
-                    <td>amikala@gmail.com</td>
+                    <td>{teacher.name}</td>
+                    <td>{teacher.designation}</td>
+                    <td>{teacher.email}</td>
                     <td>
                       <div className="flex gap-2">
                           {/* Edit button  */}
-                          <Link to="">
+                          <Link to=
+                          {`/adminTeachersEdit/${teacher.id}`}
+                          // "/adminTeachersEdit"
+                          >
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>
                           </Link>
                           {/* Delete button   */}
                           <button
+                          onClick={() => handleDelete(teacher.id)}
                             className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
                           >
                             Delete

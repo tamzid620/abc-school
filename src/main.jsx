@@ -32,6 +32,7 @@ import AdminStudentEdit from "./Components/Pages/AdminPanel/Navigation/AdminStud
 import AdminStudentDetails from "./Components/Pages/AdminPanel/Navigation/AdminStudentDetails";
 import Registration from "./Components/Pages/SignUp/Registration";
 import AdminTeachers from "./Components/Pages/AdminPanel/Navigation/AdminTeachers.jsx";
+import AdminTeachersEdit from "./Components/Pages/AdminPanel/Navigation/AdminTeachersEdit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -155,6 +156,10 @@ const router = createBrowserRouter([
       {
         path: "/adminTeachers",
         element:<AdminTeachers/>,
+      },
+      {
+        path: "/adminTeachersEdit/:teacherId",
+        element:<AdminTeachersEdit/>,
       },
     ],
   },

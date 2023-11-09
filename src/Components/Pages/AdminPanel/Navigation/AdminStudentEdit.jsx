@@ -183,7 +183,7 @@ const AdminStudentEdit = () => {
           <div className="">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              Update Details
+             Student Update 
             </h1>
             <hr className="border border-black mb-8" />
 
