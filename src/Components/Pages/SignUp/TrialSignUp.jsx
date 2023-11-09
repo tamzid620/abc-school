@@ -224,7 +224,7 @@ const TrialSignUp = () => {
               required
               className="file-input file-input-bordered file-input-primary w-full max-w-lg"
               type="file"
-              name="image"
+              name="file"
               id="file"
               onChange={handleImageChange}
             />

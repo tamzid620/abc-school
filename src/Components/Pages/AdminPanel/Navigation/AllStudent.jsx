@@ -9,8 +9,6 @@ import Swal from "sweetalert2";
 const AllStudent = () => {
   const [allStudents, setAllStudents] = useState([]);
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-const studentsPerPage = 5;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,10 +33,14 @@ const studentsPerPage = 5;
           headers: headers,
         })
         .then((res) => {
-          setAllStudents(res.data);
+          if (Array.isArray(res.data.student)) {
+            setAllStudents(res.data.student);
+          } else {
+            setAllStudents([]); // Ensure it's an array even if empty
+          }
         })
         .catch((error) => {
-          setAllStudents(error);
+          console.log;(error);
         });
     }
   }, [navigate]);
@@ -81,16 +83,6 @@ const studentsPerPage = 5;
       });
   };
 
-  const indexOfLastStudent = currentPage * studentsPerPage;
-  const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
-  const currentStudents = allStudents.student.slice(
-    indexOfFirstStudent,
-    indexOfLastStudent
-  );
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   return (
     <div className="flex justify-between">
@@ -161,7 +153,7 @@ const studentsPerPage = 5;
                   </tr>
                 </thead>
                 <tbody>
-                  {currentStudents.map((student, index) => (
+                  {allStudents.student && allStudents.student.map((student, index) => (
                       <tr key={student.id}>
                         <td>{index + 1}</td>
                         <td>
@@ -199,17 +191,6 @@ const studentsPerPage = 5;
                     ))}
                 </tbody>
               </table>
-              <div className="pagination my-10 flex justify-center">
-                {Array.from({ length: Math.ceil(allStudents.teacher.length / studentsPerPage) }, (_, index) => (
-                  <button
-                    key={index}
-                    className={`btn btn-sm ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-white"}`}
-                    onClick={() => paginate(index + 1)}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
         </div>

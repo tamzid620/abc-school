@@ -39,16 +39,17 @@ const AdminTeachersEdit = () => {
       setDesignation(e.target.value);
     };
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      const reader = new FileReader();
+    setImage(e.target.files[0]);
+    // const selectedImage = e.target.files[0];
+    // if (selectedImage) {
+    //   const reader = new FileReader();
 
-      reader.onload = (e) => {
-        const imagePreviewURL = e.target.result;
-        setImage(imagePreviewURL);
-      };
-      reader.readAsDataURL(selectedImage);
-    }
+    //   reader.onload = (e) => {
+    //     const imagePreviewURL = e.target.result;
+    //     setImage(imagePreviewURL);
+    //   };
+    //   reader.readAsDataURL(selectedImage);
+    // }
   };
 
 
@@ -61,11 +62,11 @@ const AdminTeachersEdit = () => {
     };
 
     axios
-      .get(`http://127.0.0.1:8000/api/student-edit/${teacherId}`, {
+      .get(`http://127.0.0.1:8000/api/teacher-edit/${teacherId}`, {
         headers: headers,
       })
       .then((response) => {
-        const teacherData = response.data;
+        const teacherData = response.data.user;
         setid(teacherData.id);
         setName(teacherData.name);
         setSubject(teacherData.subject);
@@ -100,7 +101,7 @@ const AdminTeachersEdit = () => {
     console.log("Selected Image:", image);
     // post method --------------
     axios
-      .post("http://127.0.0.1:8000/api/student-update", data, {
+      .post("http://127.0.0.1:8000/api/teacher-update", data, {
         headers: headers,
       })
       .then((res) => {
@@ -144,8 +145,8 @@ const AdminTeachersEdit = () => {
           <SearchPanel />
         </div>
         <div className="flex justify-center">
-          <div className="mt-20 w-full lg:z-10 md:z-0 sm: z-0">
-            {/* AdminStudentInfo section  */}
+          <div className="mt-20 w-full">
+            {/* AdminTeachersInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
              Teachers Update 
             </h1>
@@ -236,7 +237,7 @@ const AdminTeachersEdit = () => {
                 <input
                   className="file-input file-input-bordered file-input-primary w-full max-w-lg"
                   type="file"
-                  name="image"
+                  name="file"
                   id="file"
                   // value={image}
                   onChange={handleImageChange}

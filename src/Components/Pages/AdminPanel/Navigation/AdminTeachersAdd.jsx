@@ -119,7 +119,7 @@ const handleSubmit = (e) => {
           <SearchPanel />
         </div>
         <div className="flex justify-center mt-20">
-          <div className="mt-20 w-full lg:z-10 md:z-0 sm: z-0">
+          <div className="mt-20 w-full">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
             add teachers
@@ -211,7 +211,7 @@ const handleSubmit = (e) => {
                 <input
                   className="file-input file-input-bordered file-input-primary w-full max-w-lg"
                   type="file"
-                  name="image"
+                  name="file"
                   id="file"
                   // value={image}
                   onChange={handleImageChange}

@@ -13,7 +13,7 @@ const [adminTeachers, setAdminTeachers] = useState({ teacher: [] });
 
 const navigate = useNavigate();
 const [currentPage, setCurrentPage] = useState(1);
-const teachersPerPage = 5;
+const teachersPerPage = 10;
 
 
 useEffect(() => {
@@ -50,7 +50,7 @@ useEffect(() => {
 console.log(adminTeachers.teacher);
 
 // delete section
-  const handleDelete = (studentId) => {
+  const handleDelete = (teacherId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -58,17 +58,17 @@ console.log(adminTeachers.teacher);
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/delete-student/${studentId}`, {
+      .delete(`http://127.0.0.1:8000/api/delete-teacher/${teacherId}`, {
         headers: headers,
       })
       .then(() => {
-        setAdminTeachers((prevStudents) =>
-          prevStudents.filter((student) => student.student_id !== studentId)
+        setAdminTeachers((prevTeachers) =>
+          prevTeachers.filter((teacher) => teacher.teacher_id !== teacherId)
         );
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Student deleted successfully",
+          title: "Teacher deleted successfully",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -78,7 +78,7 @@ console.log(adminTeachers.teacher);
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting student",
+          title: "Error deleting Teacher",
           text: error.message,
           showConfirmButton: true,
         });
@@ -108,8 +108,8 @@ console.log(adminTeachers.teacher);
           <SearchPanel/>
         </div>
         <div className="flex justify-center">
-          <div className="mt-20 w-full lg:z-10 md:z-0 sm: z-0">
-            {/* AdminStudentInfo section  */}
+          <div className="mt-20 w-full ">
+            {/* AdminTeacherInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
               All Teachers
             </h1>

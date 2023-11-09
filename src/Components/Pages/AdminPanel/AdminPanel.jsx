@@ -45,7 +45,7 @@ const AdminPanel = () => {
   return (
     <div className="flex justify-between gap-1">
       {/* drawer section  */}
-      <Drawer />
+      <Drawer/>
       {/* adminbody  */}
       <DashBoardBody />
     </div>

@@ -34,7 +34,7 @@ const AdminStudentDetails = () => {
 
   return (
     <div className="flex justify-between">
-      <div className="z-10">
+      <div className="">
         <Drawer />
       </div>
       {/* table div  */}

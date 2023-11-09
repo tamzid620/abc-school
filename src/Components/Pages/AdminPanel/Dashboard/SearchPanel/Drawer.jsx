@@ -6,8 +6,10 @@ import { MdArrowDropDown } from "react-icons/md";
 
 const Drawer = () => {
     return (
-        <div className="">
-        <div className="z-10 drawer lg:drawer-open fixed bg-gray-100">
+        <div>
+        <div
+         className="z-10 drawer lg:drawer-open fixed bg-blue-600 w-[300px] 
+         ">
           <input id="my-drawer" type="checkbox" className="drawer-toggle " />
           <div className="drawer-content flex flex-col items-center justify-center">
             {/* Page content here */}
@@ -18,12 +20,12 @@ const Drawer = () => {
                 <BiMenuAltLeft size={40} />
               </label>
           </div>
-          <div className="drawer-side ">
+          <div className="drawer-side lg:mt-[0px] md:mt-[60px] sm: mt-[60px]">
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay "></label>
-            <ul className="menu p-4 w-80 min-h-full bg-blue-600 text-white border-r-2 border-yellow-500">
+            <ul className="menu p-4 w-80 min-h-full bg-blue-600 text-white border-r-2 border-blue-400">
               {/* Sidebar content here */}
-              <a href="/"><img className="w-[150px] sm: hidden lg:flex" src={brandlogo} alt="" /></a>
-              <hr className="border border-blue-100 opacity-40 mt-5" />
+              <a href="/"><img className="w-[150px]" src={brandlogo} alt="" /></a>
+              <hr className="border border-blue-100 opacity-40 mt-7" />
               <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="font-bold text-2xl text-white my-5">Navigation </h1>
 
 {/* Dashboard section  */}
@@ -39,15 +41,15 @@ const Drawer = () => {
                    className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
                     <IoIosSpeedometer className="text-blue-500 -ms-12" size={20} />Student Information <MdArrowDropDown size={20}/></summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-blue-400 border rounded-box w-52 ">
-                    <li><a href="/pendingStudent">Pending Students</a></li>
-                    <hr />
-                    <li><a href="/allStudent">All Students</a></li>
+                    <Link to="/pendingStudent"><li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">Pending Students</li></Link>
+                    <hr className="mt-1"/>
+                    <Link to="/pendingStudent"><li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">All Students</li></Link>
                   </ul>
                 </details>
 {/* Teachers section */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500"><IoIosSpeedometer className="text-green-500" size={20} /> 
-                <a href="/adminTeachers">Teachers</a>
+                <Link to="/adminTeachers" ><li>Teachers</li></Link>
                 </span>
               </li>
 {/* Employess section  */}
