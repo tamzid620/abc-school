@@ -39,6 +39,7 @@ import AdminEmployess from "./Components/Pages/AdminPanel/Navigation/AdminEmploy
 import AdminNotices from "./Components/Pages/AdminPanel/Navigation/AdminNotices.jsx";
 import AdminEvent from "./Components/Pages/AdminPanel/Navigation/AdminEvent.jsx";
 import AdminRoutine from "./Components/Pages/AdminPanel/Navigation/AdminRoutine.jsx";
+import AdminSyllabus from "./Components/Pages/AdminPanel/Navigation/AdminSyllabus.jsx";
 import AdminExamination from "./Components/Pages/AdminPanel/Navigation/AdminExamination.jsx";
 import AdminPayment from "./Components/Pages/AdminPanel/Navigation/AdminPayment.jsx";
 
@@ -192,6 +193,10 @@ const router = createBrowserRouter([
       {
         path: "/adminRoutine",
         element: <AdminRoutine />,
+      },
+      {
+        path: "/adminSyllabus",
+        element: <AdminSyllabus/>,
       },
       {
         path: "/adminExamination",

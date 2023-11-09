@@ -52,33 +52,47 @@ const Drawer = () => {
                 <Link to="/adminTeachers" ><li>Teachers</li></Link>
                 </span>
               </li>
-{/* Employess section  */}
+{/*Employess section  */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500"><IoIosSpeedometer className="text-yellow-500" size={20} /> Option-4</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500"><IoIosSpeedometer className="text-orange-500" size={20} /> 
+                <Link to="/adminEmployess">Employess</Link>
+                </span>
               </li>
 {/*Notice section  */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500"><IoIosSpeedometer className="text-orange-500" size={20} /> Option-5</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500"><IoIosSpeedometer className="text-gray-500" size={20} />
+                <Link to="/adminNotices">Notices</Link>
+                 </span>
               </li>
 {/*Event section  */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500"><IoIosSpeedometer className="text-gray-500" size={20} /> Option-6</span>
-              </li>
-{/*Payment section  */}
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500"><IoIosSpeedometer className="text-teal-500" size={20} /> Option-7</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500"><IoIosSpeedometer className="text-teal-500" size={20} />
+                <Link to="/adminEvent">Events</Link>
+                 </span>
               </li>
 {/*Routine section  */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-pink-500"><IoIosSpeedometer className="text-pink-500" size={20} /> Option-8</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-pink-500"><IoIosSpeedometer className="text-pink-500" size={20} /> 
+                <Link to="/adminRoutine">Routine</Link>
+                </span>
               </li>
-{/*Syllabus section  */}
+{/* syllabus section  */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-indigo-500"><IoIosSpeedometer className="text-indigo-500" size={20} /> Option-9</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500"><IoIosSpeedometer className="text-yellow-500" size={20} /> 
+                <Link to="/adminSyllabus">Syllabus</Link>
+                </span>
               </li>
 {/*Examination section  */}
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-violet-500"><IoIosSpeedometer className="text-violet-500" size={20} /> Option-10</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-indigo-500"><IoIosSpeedometer className="text-indigo-500" size={20} /> 
+                <Link to="/adminExamination">Examination</Link>
+                </span>
+              </li>
+{/*payment section  */}
+              <li className="font-semibold text-lg mb-3">
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-violet-500"><IoIosSpeedometer className="text-violet-500" size={20} /> 
+                <Link to="/adminPayment">Payment</Link>
+                </span>
               </li>
 
             </ul>
