@@ -8,8 +8,10 @@ import Swal from "sweetalert2";
 
 const AllStudent = () => {
   const [allStudents, setAllStudents] = useState([]);
-
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+const studentsPerPage = 5;
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -79,27 +81,16 @@ const AllStudent = () => {
       });
   };
 
-  // edit section
-  // const handleEdit =(studentId) => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   const headers = {
-  //     accept: "application/json",
-  //     Authorization: "Bearer " + user.token,
-  //   };
+  const indexOfLastStudent = currentPage * studentsPerPage;
+  const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
+  const currentStudents = allStudents.student.slice(
+    indexOfFirstStudent,
+    indexOfLastStudent
+  );
 
-  //   axios
-  //     .get(`/${studentId}`, {
-  //       headers: headers,
-  //     })
-  //     .then(() => {
-  //       setAllStudents((prevStudents) =>
-  //         prevStudents.filter((student) => student.student_id !== studentId)
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="flex justify-between">
@@ -170,8 +161,7 @@ const AllStudent = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {allStudents.student &&
-                    allStudents.student.map((student, index) => (
+                  {currentStudents.map((student, index) => (
                       <tr key={student.id}>
                         <td>{index + 1}</td>
                         <td>
@@ -209,15 +199,16 @@ const AllStudent = () => {
                     ))}
                 </tbody>
               </table>
-            </div>
-            {/* pagination here  */}
-            <div className="flex justify-center">
-              <div className="join my-10">
-                <button className="join-item btn">1</button>
-                <button className="join-item btn">2</button>
-                <button className="join-item btn btn-disabled">...</button>
-                <button className="join-item btn">99</button>
-                <button className="join-item btn">100</button>
+              <div className="pagination my-10 flex justify-center">
+                {Array.from({ length: Math.ceil(allStudents.teacher.length / studentsPerPage) }, (_, index) => (
+                  <button
+                    key={index}
+                    className={`btn btn-sm ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-white"}`}
+                    onClick={() => paginate(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
               </div>
             </div>
           </div>

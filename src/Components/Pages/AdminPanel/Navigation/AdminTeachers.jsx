@@ -1,15 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
-import Drawer from "../Dashboard/SearchPanel/Drawer";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminTeachers = () => {
 
-const [adminTeachers, setAdminTeachers] = useState([])
+// const [adminTeachers, setAdminTeachers] = useState([])
+const [adminTeachers, setAdminTeachers] = useState({ teacher: [] });
+
 const navigate = useNavigate();
+const [currentPage, setCurrentPage] = useState(1);
+const teachersPerPage = 5;
+
+
 useEffect(() => {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -43,7 +49,7 @@ useEffect(() => {
 
 console.log(adminTeachers.teacher);
 
-  // delete section
+// delete section
   const handleDelete = (studentId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -80,6 +86,17 @@ console.log(adminTeachers.teacher);
       });
   };
 
+  const indexOfLastTeacher = currentPage * teachersPerPage;
+  const indexOfFirstTeacher = indexOfLastTeacher - teachersPerPage;
+  const currentTeachers = adminTeachers.teacher.slice(
+    indexOfFirstTeacher,
+    indexOfLastTeacher
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="flex justify-between">
       <div className=" w-full">
@@ -94,7 +111,7 @@ console.log(adminTeachers.teacher);
           <div className="mt-20 w-full lg:z-10 md:z-0 sm: z-0">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              Add Teachers
+              All Teachers
             </h1>
             <hr className="border border-black mb-8" />
 
@@ -131,9 +148,9 @@ console.log(adminTeachers.teacher);
                 </div>
                 {/* add button  */}
                 <div>
-                  <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                  <Link to="/adminTeachersAdd"><button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                     Add
-                  </button>
+                  </button></Link>
                 </div>
               </div>
 
@@ -150,7 +167,7 @@ console.log(adminTeachers.teacher);
                   </tr>
                 </thead>
                 <tbody >
-{adminTeachers.teacher && adminTeachers.teacher.map((teacher) => (
+{currentTeachers.map((teacher) => (
                   <tr key={teacher.id}>
                     <div className="mask mask-squircle w-12 h-12">
                       <td> <img src={teacher.image}alt="teahcer's photo"/> </td>
@@ -183,11 +200,20 @@ console.log(adminTeachers.teacher);
 ))}
                 </tbody>
               </table>
-
+              <div className="pagination my-10 flex justify-center">
+                {Array.from({ length: Math.ceil(adminTeachers.teacher.length / teachersPerPage) }, (_, index) => (
+                  <button
+                    key={index}
+                    className={`btn btn-sm ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-white"}`}
+                    onClick={() => paginate(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

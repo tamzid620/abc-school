@@ -7,8 +7,9 @@ import Swal from "sweetalert2";
 
 const PendingStudent = () => {
   const [pendStudents, setPendStudents] = useState([]);
-
   const navigate = useNavigate();
+
+  
 
   useEffect(() => {
     const token = localStorage.getItem("token");

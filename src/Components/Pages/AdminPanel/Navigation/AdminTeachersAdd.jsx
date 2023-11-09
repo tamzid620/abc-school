@@ -1,13 +1,11 @@
-import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 
-const AdminTeachersEdit = () => {
-  const { teacherId } = useParams();
+const AdminTeachersAdd = () => {
 
   // post method
   const [id, setid] = useState("");
@@ -52,86 +50,63 @@ const AdminTeachersEdit = () => {
   };
 
 
-  // get  method ----------------------
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-
-    axios
-      .get(`http://127.0.0.1:8000/api/student-edit/${teacherId}`, {
-        headers: headers,
-      })
-      .then((response) => {
-        const teacherData = response.data;
-        setid(teacherData.id);
-        setName(teacherData.name);
-        setSubject(teacherData.subject);
-        setDesignation(teacherData.designation);
-        setEmail(teacherData.email);
-        setphoneNo(teacherData.phoneNo);
-        setImage(teacherData.image);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [teacherId]);
-
   // post section ----------------
-  const handleSubmit = (e) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-
-    e.preventDefault();
-    const data = new FormData();
-    data.append("id", id);
-    data.append("name", name);
-    data.append("subject", subject);
-    data.append("designation", designation);
-    data.append("email", email);
-    data.append("phoneNo", phoneNo);
-    data.append("image", image);
-    console.log(data);
-    console.log("Selected Image:", image);
-    // post method --------------
-    axios
-      .post("http://127.0.0.1:8000/api/student-update", data, {
-        headers: headers,
-      })
-      .then((res) => {
-        console.log("Data:", res.data);
-        // to refresh to form ---------------
-        setid("");
-        setName("");
-        setSubject("");
-        setDesignation("");
-        setEmail("");
-        setphoneNo("");
-        setImage("");
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "updated Data successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/adminTeachers");
-      })
-      .catch((error) => {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: ("An error occurred:", error),
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
+//   useEffect(() => {
+      
+// }, []);
+const handleSubmit = (e) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
   };
+
+  e.preventDefault();
+  const data = new FormData();
+  data.append("id", id);
+  data.append("name", name);
+  data.append("subject", subject);
+  data.append("designation", designation);
+  data.append("email", email);
+  data.append("phoneNo", phoneNo);
+  data.append("image", image);
+  console.log(data);
+  console.log("Selected Image:", image);
+  // post method --------------
+  axios
+    .post("http://127.0.0.1:8000/api/student-update", data, {
+      headers: headers,
+    })
+    .then((res) => {
+      console.log("Data:", res.data);
+      // to refresh to form ---------------
+      setid("");
+      setName("");
+      setSubject("");
+      setDesignation("");
+      setEmail("");
+      setphoneNo("");
+      setImage("");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "updated Data successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminTeachers");
+    })
+    .catch((error) => {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: ("An error occurred:", error),
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+};
+
 
   return (
     <div className="flex justify-between">
@@ -143,11 +118,11 @@ const AdminTeachersEdit = () => {
         <div className="">
           <SearchPanel />
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-20">
           <div className="mt-20 w-full lg:z-10 md:z-0 sm: z-0">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-             Teachers Update 
+            add teachers
             </h1>
             <hr className="border border-black mb-8" />
 
@@ -262,6 +237,7 @@ const AdminTeachersEdit = () => {
               >
                 Save
               </button>
+
             </form>
           </div>
         </div>
@@ -270,4 +246,4 @@ const AdminTeachersEdit = () => {
   );
 };
 
-export default AdminTeachersEdit;
+export default AdminTeachersAdd;

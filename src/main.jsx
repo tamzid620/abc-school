@@ -33,6 +33,7 @@ import AdminStudentDetails from "./Components/Pages/AdminPanel/Navigation/AdminS
 import Registration from "./Components/Pages/SignUp/Registration";
 import AdminTeachers from "./Components/Pages/AdminPanel/Navigation/AdminTeachers.jsx";
 import AdminTeachersEdit from "./Components/Pages/AdminPanel/Navigation/AdminTeachersEdit.jsx";
+import AdminTeachersAdd from "./Components/Pages/AdminPanel/Navigation/AdminTeachersAdd.jsx";
 
 const router = createBrowserRouter([
   {
@@ -161,6 +162,10 @@ const router = createBrowserRouter([
         path: "/adminTeachersEdit/:teacherId",
         element:<AdminTeachersEdit/>,
       },
+    {
+      path: "/adminTeachersAdd",
+      element:<AdminTeachersAdd/>
+    }
     ],
   },
 ]);
