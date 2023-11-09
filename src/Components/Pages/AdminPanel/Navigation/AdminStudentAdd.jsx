@@ -1,14 +1,11 @@
-import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
-import { useState } from "react";
-import axios from "axios";
+import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
-const AdminStudentEdit = () => {
-  const { studentId } = useParams();
+const AdminStudentAdd = () => {
 
   // post method ------------
   const [name, setName] = useState("");
@@ -62,57 +59,16 @@ const AdminStudentEdit = () => {
   };
 
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        const imagePreviewURL = e.target.result;
-        setImage(imagePreviewURL);
-      };
-      reader.readAsDataURL(selectedImage);
+      setImage(e.target.files[0]);
     }
-  };
 
   const handlephoneNoChange = (e) => {
     setphoneNo(e.target.value);
   };
 
-  // get  method ----------------------
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-
-    axios
-      .get(`http://127.0.0.1:8000/api/student-edit/${studentId}`, {
-        headers: headers,
-      })
-      .then((response) => {
-        const studentData = response.data;
-        setid(studentData.id);
-        setName(studentData.name);
-        setfatherName(studentData.fatherName);
-        setmotherName(studentData.motherName);
-        setBirthDate(studentData.birthDate);
-        setEmail(studentData.email);
-        setAddress(studentData.address);
-        setphoneNo(studentData.phoneNo);
-        setImage(studentData.image);
-        setrollNo(studentData.rollNo);
-        setregNo(studentData.regNo);
-        setwclass(studentData.wclass);
-        setsection(studentData.section);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [studentId]);
 
   // post section ----------------
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -136,17 +92,27 @@ const AdminStudentEdit = () => {
     data.append("section", section);
     console.log(data);
     console.log("Selected Image:", image);
-// post method --------------
+    // post method --------------
     axios
       .post("http://127.0.0.1:8000/api/student-update", data, {
         headers: headers,
       })
       .then((res) => {
         console.log("Data:", res.data);
-// to refresh to form ---------------
-        setid("");setName(""); setfatherName("");setmotherName("");
-        setBirthDate(""); setEmail("");  setAddress(""); setphoneNo(""); 
-        setImage(""); setrollNo(""); setregNo(""); setwclass(""); setsection("");
+        // to refresh to form ---------------
+        setid("");
+        setName("");
+        setfatherName("");
+        setmotherName("");
+        setBirthDate("");
+        setEmail("");
+        setAddress("");
+        setphoneNo("");
+        setImage("");
+        setrollNo("");
+        setregNo("");
+        setwclass("");
+        setsection("");
         Swal.fire({
           position: "center",
           icon: "success",
@@ -165,8 +131,7 @@ const AdminStudentEdit = () => {
           timer: 1500,
         });
       });
-    }
-
+  };
 
   return (
     <div className="flex justify-between">
@@ -183,7 +148,7 @@ const AdminStudentEdit = () => {
           <div className="">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-             Student Update 
+             Add Students
             </h1>
             <hr className="border border-black mb-8" />
 
@@ -387,4 +352,4 @@ const AdminStudentEdit = () => {
   );
 };
 
-export default AdminStudentEdit;
+export default AdminStudentAdd;

@@ -28,12 +28,19 @@ import Routine from "./Components/Pages/Academic/Routine";
 import ApplyOnline from "./Components/Pages/Admission/ApplyOnline";
 import ApplyMethod from "./Components/Pages/Admission/ApplyMethod";
 import OurHistory from "./Components/Pages/About/OurHistory";
-import AdminStudentEdit from "./Components/Pages/AdminPanel/Navigation/AdminStudentEdit.jsx"
+import AdminStudentEdit from "./Components/Pages/AdminPanel/Navigation/AdminStudentEdit.jsx";
 import AdminStudentDetails from "./Components/Pages/AdminPanel/Navigation/AdminStudentDetails";
 import Registration from "./Components/Pages/SignUp/Registration";
 import AdminTeachers from "./Components/Pages/AdminPanel/Navigation/AdminTeachers.jsx";
 import AdminTeachersEdit from "./Components/Pages/AdminPanel/Navigation/AdminTeachersEdit.jsx";
 import AdminTeachersAdd from "./Components/Pages/AdminPanel/Navigation/AdminTeachersAdd.jsx";
+import AdminStudentAdd from "./Components/Pages/AdminPanel/Navigation/AdminStudentAdd.jsx";
+import AdminEmployess from "./Components/Pages/AdminPanel/Navigation/AdminEmployess.jsx";
+import AdminNotices from "./Components/Pages/AdminPanel/Navigation/AdminNotices.jsx";
+import AdminEvent from "./Components/Pages/AdminPanel/Navigation/AdminEvent.jsx";
+import AdminRoutine from "./Components/Pages/AdminPanel/Navigation/AdminRoutine.jsx";
+import AdminExamination from "./Components/Pages/AdminPanel/Navigation/AdminExamination.jsx";
+import AdminPayment from "./Components/Pages/AdminPanel/Navigation/AdminPayment.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +48,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-// default panel route ---------------------------
+      // default panel route ---------------------------
       // Home section
       {
         path: "/",
@@ -129,7 +136,7 @@ const router = createBrowserRouter([
         path: "/registration",
         element: <Registration />,
       },
-// admin panel route ---------------------------
+      // admin panel route ---------------------------
       {
         path: "/adminlogin",
         element: <AdminLogin />,
@@ -147,25 +154,53 @@ const router = createBrowserRouter([
         element: <AllStudent />,
       },
       {
+        path: "/adminStudentAdd",
+        element: <AdminStudentAdd />,
+      },
+      {
         path: "/adminStudentEdit/:studentId",
-        element: <AdminStudentEdit/>,
+        element: <AdminStudentEdit />,
       },
       {
         path: "/adminStudentDetails/:studentId",
-        element:<AdminStudentDetails/>,
+        element: <AdminStudentDetails />,
       },
       {
         path: "/adminTeachers",
-        element:<AdminTeachers/>,
+        element: <AdminTeachers />,
       },
       {
         path: "/adminTeachersEdit/:teacherId",
-        element:<AdminTeachersEdit/>,
+        element: <AdminTeachersEdit />,
       },
-    {
-      path: "/adminTeachersAdd",
-      element:<AdminTeachersAdd/>
-    }
+      {
+        path: "/adminTeachersAdd",
+        element: <AdminTeachersAdd />,
+      },
+      {
+        path: "/adminEmployess",
+        element: <AdminEmployess />,
+      },
+      {
+        path: "/adminNotices",
+        element: <AdminNotices />,
+      },
+      {
+        path: "/adminEvent",
+        element: <AdminEvent />,
+      },
+      {
+        path: "/adminRoutine",
+        element: <AdminRoutine />,
+      },
+      {
+        path: "/adminExamination",
+        element: <AdminExamination />,
+      },
+      {
+        path: "/adminPayment",
+        element: <AdminPayment />,
+      },
     ],
   },
 ]);

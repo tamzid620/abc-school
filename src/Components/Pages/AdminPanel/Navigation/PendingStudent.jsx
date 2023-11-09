@@ -117,12 +117,13 @@ const PendingStudent = () => {
 
   return (
     <div className="flex justify-between">
-      <div className="">
+      <div className="w-full">
         <Drawer />
       </div>
       {/* table div  */}
-      <div className="">
-        <div className="lg:-ms-[290px] md:-ms-20 ">
+      <div className="
+        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
+        <div>
           <SearchPanel />
         </div>
         <div className="flex justify-center">

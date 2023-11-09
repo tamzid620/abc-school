@@ -86,12 +86,13 @@ const AllStudent = () => {
 
   return (
     <div className="flex justify-between">
-      <div className="">
+      <div className="w-full">
         <Drawer />
       </div>
       {/* table div  */}
-      <div className="">
-        <div className="lg:-ms-[290px] md:-ms-20 ">
+      <div className="
+        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
+        <div>
           <SearchPanel />
         </div>
         <div className="flex justify-center">
@@ -134,9 +135,10 @@ const AllStudent = () => {
                 </div>
                 {/* add button  */}
                 <div>
-                  <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                  <Link to="/adminStudentAdd">
+                    <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                     Add
-                  </button>
+                  </button></Link>
                 </div>
               </div>
               <table className="table table-lg table-pin-rows table-pin-cols border">

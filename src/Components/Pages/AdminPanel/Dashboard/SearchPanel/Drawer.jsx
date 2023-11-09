@@ -43,7 +43,7 @@ const Drawer = () => {
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-blue-400 border rounded-box w-52 ">
                     <Link to="/pendingStudent"><li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">Pending Students</li></Link>
                     <hr className="mt-1"/>
-                    <Link to="/pendingStudent"><li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">All Students</li></Link>
+                    <Link to="/allStudent"><li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">All Students</li></Link>
                   </ul>
                 </details>
 {/* Teachers section */}

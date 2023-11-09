@@ -140,8 +140,10 @@ const AdminTeachersEdit = () => {
         <Drawer />
       </div>
       {/* form div  */}
-      <div className=" w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
-        <div className="">
+      <div className="
+        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]
+       ">
+        <div >
           <SearchPanel />
         </div>
         <div className="flex justify-center">
