@@ -36,24 +36,10 @@ const AdminTeachersAdd = () => {
     const handledesignationChange = (e) => {
       setDesignation(e.target.value);
     };
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      const reader = new FileReader();
+    const handleImageChange = (e) => {
+      setImage(e.target.files[0]);
+    };
 
-      reader.onload = (e) => {
-        const imagePreviewURL = e.target.result;
-        setImage(imagePreviewURL);
-      };
-      reader.readAsDataURL(selectedImage);
-    }
-  };
-
-
-  // post section ----------------
-//   useEffect(() => {
-      
-// }, []);
 const handleSubmit = (e) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const headers = {
@@ -115,7 +101,7 @@ const handleSubmit = (e) => {
       </div>
       {/* form div  */}
       <div className="
-        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px] sm: -ms-[400px]">
+        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
         <div className="">
           <SearchPanel />
         </div>
@@ -210,7 +196,7 @@ const handleSubmit = (e) => {
               <div>
                 <label htmlFor="file">Picture: </label> <br />
                 <input
-                  className="file-input file-input-bordered file-input-primary w-full max-w-lg"
+                  className="file-input file-input-bordered file-input-primary w-full"
                   type="file"
                   name="file"
                   id="file"

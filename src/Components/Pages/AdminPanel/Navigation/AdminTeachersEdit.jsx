@@ -40,16 +40,6 @@ const AdminTeachersEdit = () => {
     };
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
-    // const selectedImage = e.target.files[0];
-    // if (selectedImage) {
-    //   const reader = new FileReader();
-
-    //   reader.onload = (e) => {
-    //     const imagePreviewURL = e.target.result;
-    //     setImage(imagePreviewURL);
-    //   };
-    //   reader.readAsDataURL(selectedImage);
-    // }
   };
 
 

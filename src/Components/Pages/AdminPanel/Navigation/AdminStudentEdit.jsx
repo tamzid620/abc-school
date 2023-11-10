@@ -60,18 +60,8 @@ const AdminStudentEdit = () => {
   const handleIdChange = (e) => {
     setid(e.target.value);
   };
-
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        const imagePreviewURL = e.target.result;
-        setImage(imagePreviewURL);
-      };
-      reader.readAsDataURL(selectedImage);
-    }
+    setImage(e.target.files[0]);
   };
 
   const handlephoneNoChange = (e) => {

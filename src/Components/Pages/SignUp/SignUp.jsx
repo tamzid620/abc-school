@@ -35,17 +35,8 @@ const SignUP = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
   const handleImageChange = (e) => {
-    const image = e.target.files[0];
-    if (image) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imagePreviewURL = e.target.result;
-        setImage(imagePreviewURL);
-      };
-      reader.readAsDataURL(image);
-    }
+    setImage(e.target.files[0]);
   };
   
 

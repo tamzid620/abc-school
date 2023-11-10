@@ -35,12 +35,8 @@ const TrialSignUp = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) {
-      setImage(selectedImage);
-    }
+    setImage(e.target.files[0]);
   };
   
   const handlephoneNoChange = (e) => {
