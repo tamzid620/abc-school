@@ -6,12 +6,10 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 
-const AdminTeachers = () => {
-  const [adminTeachers, setAdminTeachers] = useState({ teacher: [] });
+const AdminEmployees = () => {
+  const [adminEmployees, setAdminEmployees] = useState([]);
 
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-  const teachersPerPage = 10;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -36,18 +34,18 @@ const AdminTeachers = () => {
           headers: headers,
         })
         .then((res) => {
-          setAdminTeachers(res.data);
+          setAdminEmployees(res.data);
         })
         .catch((error) => {
-          setAdminTeachers(error);
+          setAdminEmployees(error);
         });
     }
   }, [navigate]);
 
-  console.log(adminTeachers.teacher);
+  console.log(adminEmployees);
 
   // delete section
-  const handleDelete = (teacherId) => {
+  const handleDelete = (employeeId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -55,43 +53,34 @@ const AdminTeachers = () => {
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/delete-teacher/${teacherId}`, {
+      .delete(`http://127.0.0.1:8000/api/delete-employee/${employeeId}`, {
         headers: headers,
       })
       .then(() => {
-        setAdminTeachers((prevTeachers) =>
-          prevTeachers.filter((teacher) => teacher.teacher_id !== teacherId)
+        setAdminEmployees((prevEmployees) =>
+          prevEmployees.filter(
+            (employee) => employee.employee_id !== employeeId
+          )
         );
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Teacher deleted successfully",
+          title: "employee deleted successfully",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminTeachers");
+        navigate("/adminEmployees");
       })
       .catch((error) => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting Teacher",
+          title: "Error deleting employee",
           text: error.message,
           showConfirmButton: true,
         });
-        navigate("/adminTeachers");
+        navigate("/adminEmployees");
       });
-  };
-
-  const indexOfLastTeacher = currentPage * teachersPerPage;
-  const indexOfFirstTeacher = indexOfLastTeacher - teachersPerPage;
-  const currentTeachers = adminTeachers.teacher.slice(
-    indexOfFirstTeacher,
-    indexOfLastTeacher
-  );
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
   };
 
   return (
@@ -102,20 +91,20 @@ const AdminTeachers = () => {
       {/* table div  */}
       <div
         className="
-        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]"
+          w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]"
       >
         <div>
           <SearchPanel />
         </div>
         <div className="flex justify-center">
           <div className="mt-20 w-full ">
-            {/* AdminTeacherInfo section  */}
+            {/* AdminemployeeInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              All Teachers
+              All employees
             </h1>
             <hr className="border border-black mb-8" />
 
-            {/* add teachers list section  */}
+            {/* add employees list section  */}
             <div className="overflow-x-auto border ">
               {/* search and add field  */}
               <div className="flex justify-between items-center mx-3 mt-5">
@@ -147,7 +136,7 @@ const AdminTeachers = () => {
                 </div>
                 {/* add button  */}
                 <div>
-                  <Link to="/adminTeachersAdd">
+                  <Link to="/adminEmployeesAdd">
                     <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                       Add
                     </button>
@@ -168,24 +157,27 @@ const AdminTeachers = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentTeachers.map((teacher) => (
-                    <tr key={teacher.id}>
+                  {adminEmployees.map((employee) => (
+                    <tr key={employee.id}>
                       <div className="mask mask-squircle w-12 h-12">
                         <td>
                           {" "}
-                          <img src={teacher.image} alt="teahcer's photo" />{" "}
+                          <img
+                            src={employee.image}
+                            alt="teahcer's photo"
+                          />{" "}
                         </td>
                       </div>
 
-                      <td>{teacher.name}</td>
-                      <td>{teacher.designation}</td>
-                      <td>{teacher.email}</td>
+                      <td>{employee.name}</td>
+                      <td>{employee.designation}</td>
+                      <td>{employee.email}</td>
                       <td>
                         <div className="flex gap-2">
                           {/* Edit button  */}
                           <Link
-                            to={`/adminTeachersEdit/${teacher.id}`}
-                            // "/adminTeachersEdit"
+                            to={`/adminEmployeesEdit/${employee.id}`}
+                            // "/adminEmployeesEdit"
                           >
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
@@ -193,7 +185,7 @@ const AdminTeachers = () => {
                           </Link>
                           {/* Delete button   */}
                           <button
-                            onClick={() => handleDelete(teacher.id)}
+                            onClick={() => handleDelete(employee.id)}
                             className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
                           >
                             Delete
@@ -204,28 +196,6 @@ const AdminTeachers = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="pagination my-10 flex justify-center">
-                {Array.from(
-                  {
-                    length: Math.ceil(
-                      adminTeachers.teacher.length / teachersPerPage
-                    ),
-                  },
-                  (_, index) => (
-                    <button
-                      key={index}
-                      className={`btn btn-sm ${
-                        currentPage === index + 1
-                          ? "bg-blue-500 text-white"
-                          : "bg-white"
-                      }`}
-                      onClick={() => paginate(index + 1)}
-                    >
-                      {index + 1}
-                    </button>
-                  )
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -234,4 +204,4 @@ const AdminTeachers = () => {
   );
 };
 
-export default AdminTeachers;
+export default AdminEmployees;

@@ -9,8 +9,6 @@ const PendingStudent = () => {
   const [pendStudents, setPendStudents] = useState([]);
   const navigate = useNavigate();
 
-  
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {

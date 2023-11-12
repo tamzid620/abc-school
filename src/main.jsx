@@ -35,13 +35,15 @@ import AdminTeachers from "./Components/Pages/AdminPanel/Navigation/AdminTeacher
 import AdminTeachersEdit from "./Components/Pages/AdminPanel/Navigation/AdminTeachersEdit.jsx";
 import AdminTeachersAdd from "./Components/Pages/AdminPanel/Navigation/AdminTeachersAdd.jsx";
 import AdminStudentAdd from "./Components/Pages/AdminPanel/Navigation/AdminStudentAdd.jsx";
-import AdminEmployess from "./Components/Pages/AdminPanel/Navigation/AdminEmployess.jsx";
 import AdminNotices from "./Components/Pages/AdminPanel/Navigation/AdminNotices.jsx";
 import AdminEvent from "./Components/Pages/AdminPanel/Navigation/AdminEvent.jsx";
 import AdminRoutine from "./Components/Pages/AdminPanel/Navigation/AdminRoutine.jsx";
 import AdminSyllabus from "./Components/Pages/AdminPanel/Navigation/AdminSyllabus.jsx";
 import AdminExamination from "./Components/Pages/AdminPanel/Navigation/AdminExamination.jsx";
 import AdminPayment from "./Components/Pages/AdminPanel/Navigation/AdminPayment.jsx";
+import AdminEmployees from "./Components/Pages/AdminPanel/Navigation/AdminEmployees.jsx";
+import AdminEmployeesEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeesEdit.jsx";
+import AdminEmployeesAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeesAdd.jsx";
 
 const router = createBrowserRouter([
   {
@@ -180,7 +182,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/adminEmployees",
-        element: <AdminEmployess />,
+        element: <AdminEmployees />,
+      },
+      {
+        path: "/adminEmployeesEdit/:employeeId",
+        element: <AdminEmployeesEdit />,
+      },
+      {
+        path: "/adminEmployeesAdd",
+        element: <AdminEmployeesAdd/>,
       },
       {
         path: "/adminNotices",

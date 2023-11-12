@@ -3,11 +3,11 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AdminStudentAdd = () => {
 
-  // post method ------------
+  const [adminStudents, setAdminStudents] = useState([]);
   const [name, setName] = useState("");
   const [fatherName, setfatherName] = useState("");
   const [motherName, setmotherName] = useState("");
@@ -59,13 +59,43 @@ const AdminStudentAdd = () => {
   };
 
   const handleImageChange = (e) => {
-      setImage(e.target.files[0]);
-    }
+    setImage(e.target.files[0]);
+  };
 
   const handlephoneNoChange = (e) => {
     setphoneNo(e.target.value);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+      axios
+        .get(`http://127.0.0.1:8000/api/pending-student-list`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setAdminStudents(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [navigate]);
+  console.log(adminStudents);
 
   // post section ----------------
   const handleSubmit = (e) => {
@@ -139,8 +169,10 @@ const AdminStudentAdd = () => {
         <Drawer />
       </div>
       {/* table div  */}
-      <div className="
-        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
+      <div
+        className="
+        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]"
+      >
         <div>
           <SearchPanel />
         </div>
@@ -148,7 +180,7 @@ const AdminStudentAdd = () => {
           <div className="">
             {/* AdminStudentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-             Add Students
+              Add Students
             </h1>
             <hr className="border border-black mb-8" />
 
@@ -177,6 +209,7 @@ const AdminStudentAdd = () => {
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                   // placeholder="Add Name"
+                  required
                   type="text"
                   name="name"
                   id="name"
@@ -192,6 +225,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Father Name"
+                    required
                     type="text"
                     name="fatherName"
                     id="fatherName"
@@ -205,6 +239,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Mother Name"
+                    required
                     type="text"
                     name="motherName"
                     id="motherName"
@@ -221,6 +256,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Phone Number"
+                    required
                     type="number"
                     name="phoneNo"
                     id="phoneNo"
@@ -233,6 +269,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="date"
+                    required
                     name="birthDate"
                     id="birthDate"
                     value={birthDate}
@@ -248,6 +285,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Email"
+                    required
                     type="email"
                     name="email"
                     id="email"
@@ -260,6 +298,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add address"
+                    required
                     type="text"
                     name="address"
                     id="address"
@@ -276,6 +315,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Roll Number"
+                    required
                     type="number"
                     name="rollNo"
                     id="rollNo"
@@ -288,6 +328,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Registration Number"
+                    required
                     type="number"
                     name="regNo"
                     id="regNo"
@@ -304,6 +345,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Class"
+                    required
                     type="wclass"
                     name="wclass"
                     id="wclass"
@@ -316,6 +358,7 @@ const AdminStudentAdd = () => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add section"
+                    required
                     type="text"
                     name="section"
                     id="section"
@@ -331,6 +374,7 @@ const AdminStudentAdd = () => {
                 <input
                   className="file-input file-input-bordered file-input-primary w-full max-w-lg"
                   type="file"
+                  required
                   name="file"
                   id="file"
                   // value={image}

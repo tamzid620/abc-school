@@ -20,7 +20,9 @@ const Layout = () => {
         location.pathname.includes('AdminStudentDetails') ||
         location.pathname.includes('adminTeachers') ||
         location.pathname.includes('adminStudentAdd') ||
-        location.pathname.includes('adminEmployess') ||
+        location.pathname.includes('adminEmployees') ||
+        location.pathname.includes('adminEmployeesEdit') ||
+        location.pathname.includes('adminEmployeesAdd') ||
         location.pathname.includes('adminNotices') ||
         location.pathname.includes('adminEvent') ||
         location.pathname.includes('adminRoutine') ||

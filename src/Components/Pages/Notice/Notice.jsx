@@ -18,6 +18,11 @@ const Notice = () => {
   }, []);
   console.log(notices);
 
+  // pdf section 
+  const handlePdfDownload = (pdfUrl) => {
+    window.open(pdfUrl, "_blank");
+  };
+
   return (
     <div>
       <div
@@ -64,23 +69,44 @@ const Notice = () => {
           <tbody>
             {notices.map((notice) => {
               <tr key={notice.id} className="flex justify-between w-full">
-              <td className="w-1/2 border-r-2">
-                <a href={notice.pdfUrl} target="_blank" rel="noopener noreferrer">
-                {notice.pdftitle}
-                </a>
-              </td>
-              <td className="w-1/4 border-r-2 flex justify-center">{notice.date}</td>
-              <td className="w-1/4 flex justify-center py-2"> <BsFiletypePdf color="red" size={35}/> </td>
-            </tr>
+                <td className="w-1/2 border-r-2">
+                  <a
+                    href={notice.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {notice.pdftitle}
+                  </a>
+                </td>
+                <td className="w-1/4 border-r-2 flex justify-center">
+                  {notice.date}
+                </td>
+                <td className="w-1/4 flex justify-center py-2">
+                  <BsFiletypePdf
+                   onClick={() => handlePdfDownload(notice.pdfUrl)}
+                    className="p-1 rounded-lg text-red-500 hover:bg-red-500 hover:text-white"
+                    color="red"
+                    size={40}
+                  />
+                </td>
+              </tr>;
             })}
             <tr className="flex justify-between w-full">
               <td className="w-1/2 border-r-2">
                 <a href="/" target="_blank" rel="noopener noreferrer">
-                class Off Notice
+                  class Off Notice
                 </a>
               </td>
-              <td className="w-1/4 border-r-2 flex justify-center">10 August 2023</td>
-              <td className="w-1/4 flex justify-center py-2"> <BsFiletypePdf color="red" size={35}/> </td>
+              <td className="w-1/4 border-r-2 flex justify-center">
+                10 August 2023
+              </td>
+              <td className="w-1/4 flex justify-center py-2">
+                <BsFiletypePdf
+                 onClick={() => handlePdfDownload()}
+                  className=" p-1 rounded-lg text-red-500 hover:bg-red-500 hover:text-white"
+                  size={40}
+                />
+              </td>
             </tr>
           </tbody>
           <hr />

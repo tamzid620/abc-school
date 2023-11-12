@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminTeachersAdd = () => {
+  const [adminTeachers, setAdminTeachers] = useState([])
 
   // post method
   const [id, setid] = useState("");
@@ -39,6 +40,38 @@ const AdminTeachersAdd = () => {
     const handleImageChange = (e) => {
       setImage(e.target.files[0]);
     };
+
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: "You have to Login first",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminlogin");
+      } else {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const headers = {
+          accept: "application/json",
+          Authorization: "Bearer " + user.token,
+        };
+  
+        axios
+          .get(`http://127.0.0.1:8000/api/login`, {
+            headers: headers,
+          })
+          .then((res) => {
+            setAdminTeachers(res.data);
+          })
+          .catch((error) => {
+            setAdminTeachers(error);
+          });
+      }
+    }, [navigate]);
+    console.log(adminTeachers);
 
 const handleSubmit = (e) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -128,6 +161,7 @@ const handleSubmit = (e) => {
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                   // placeholder="Add Name"
+                  required
                   type="text"
                   name="name"
                   id="name"
@@ -141,6 +175,7 @@ const handleSubmit = (e) => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Email"
+                  required
                     type="email"
                     name="email"
                     id="email"
@@ -158,6 +193,7 @@ const handleSubmit = (e) => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
+                    required
                     name="subject"
                     id="subject"
                     value={subject}
@@ -170,6 +206,7 @@ const handleSubmit = (e) => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="number"
+                    required
                     name="phoneNo"
                     id="phoneNo"
                     value={phoneNo}
@@ -184,6 +221,7 @@ const handleSubmit = (e) => {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     // placeholder="Add Mother Name"
+                  required
                     type="text"
                     name="designation"
                     id="designation"
@@ -198,6 +236,7 @@ const handleSubmit = (e) => {
                 <input
                   className="file-input file-input-bordered file-input-primary w-full"
                   type="file"
+                  required
                   name="file"
                   id="file"
                   // value={image}
