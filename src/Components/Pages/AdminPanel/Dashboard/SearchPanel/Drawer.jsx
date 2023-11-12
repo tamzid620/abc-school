@@ -8,7 +8,7 @@ const Drawer = () => {
     return (
         <div>
         <div
-         className="z-10 drawer lg:drawer-open fixed bg-blue-600 w-[300px] 
+         className="z-10 drawer lg:drawer-open fixed bg-blue-900 w-[300px] 
          ">
           <input id="my-drawer" type="checkbox" className="drawer-toggle " />
           <div className="drawer-content flex flex-col items-center justify-center">
@@ -16,16 +16,16 @@ const Drawer = () => {
       <label htmlFor="my-drawer" 
         className=" border border-blue-600 hover:bg-blue-500
          hover:text-black w[2px] h-[20px] py-[31px] flex items-center 
-         lg:hidden md:mt-0 md:me-[1000px] bg-blue-600 sm: me-[1000px] ">
+         lg:hidden md:mt-0 md:me-[1000px] bg-blue-900 sm: me-[1000px] ">
                 <BiMenuAltLeft size={40} />
               </label>
           </div>
           <div className="drawer-side lg:mt-[0px] md:mt-[60px] sm: mt-[60px]">
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay "></label>
-            <ul className="menu p-4 w-80 min-h-full bg-blue-600 text-white border-r-2 border-blue-400">
+            <ul className="menu p-4 w-80 min-h-full bg-blue-900 text-white border-r-2 border-blue-400">
               {/* Sidebar content here */}
               <a href="/"><img className="w-[150px]" src={brandlogo} alt="" /></a>
-              <hr className="border border-blue-100 opacity-40 mt-7" />
+              <hr className="border border-blue-400 opacity-40 mt-[26px]" />
               <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="font-bold text-2xl text-white my-5">Navigation </h1>
 
 {/* Dashboard section  */}
@@ -55,7 +55,7 @@ const Drawer = () => {
 {/*Employess section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500"><IoIosSpeedometer className="text-orange-500" size={20} /> 
-                <Link to="/adminEmployess">Employess</Link>
+                <Link to="/adminEmployees">Employess</Link>
                 </span>
               </li>
 {/*Notice section  */}

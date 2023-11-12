@@ -2,14 +2,20 @@ import { useEffect } from "react";
 import unknownPhoto from "../../../../public/images/Unknown.png";
 import backgroudphoto from "../../../../public/images/tree.jpg";
 import { useState } from "react";
+import axios from "axios";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-    fetch("/api/teacher-listApi")
-      .then((res) => res.json())
-      .then((data) => setTeachers(data));
+    axios
+      .get("https://example.com/api/allStudents")
+      .then((res) => {
+        setTeachers(res.data);
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      });
   }, []);
 
   console.log(teachers);
@@ -44,235 +50,29 @@ const Teachers = () => {
 
       {/* information section  */}
       <div className="mt-10 max-w-screen-xl mx-auto ">
-        {/* our team seciton  */}
-        <div>
-          {/* our team information */}
-          <div className="mt-10">
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              <div className="flex lg:justify-end md:justify-end sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Babul
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    General Manager
-                  </p>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {teachers.map((teacher) => {
+            <div
+              key={teacher.id}
+              className="flex lg:justify-end md:justify-end sm: justify-center"
+            >
+              <div>
+                <div className="flex justify-center">
+                  <img
+                    className="w-[350px] rounded-xl bg-yellow-200"
+                    src={teacher.image}
+                    alt=""
+                  />
                 </div>
+                <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
+                  {teacher.name}
+                </h1>
+                <p className="flex justify-center font-semibold  uppercase">
+                  {teacher.designation}
+                </p>
               </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-end md:justify-end sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Babul
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-end md:justify-end sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Babul
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-end md:justify-end sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Babul
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-end md:justify-end sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Babul
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex lg:justify-start md:justify-start sm: justify-center">
-                <div>
-                  <div className="flex justify-center">
-                    <img
-                      className="w-[350px] rounded-xl bg-yellow-200"
-                      src={unknownPhoto}
-                      alt=""
-                    />
-                  </div>
-                  <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
-                    Bahar
-                  </h1>
-                  <p className="flex justify-center font-semibold  uppercase">
-                    {" "}
-                    General Manager
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </div>;
+          })}
         </div>
       </div>
     </div>

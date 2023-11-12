@@ -179,7 +179,7 @@ const router = createBrowserRouter([
         element: <AdminTeachersAdd />,
       },
       {
-        path: "/adminEmployess",
+        path: "/adminEmployees",
         element: <AdminEmployess />,
       },
       {

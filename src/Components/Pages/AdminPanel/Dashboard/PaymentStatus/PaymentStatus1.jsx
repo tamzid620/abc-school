@@ -8,10 +8,10 @@ import user5 from '../../../../../assets/user/user-06.png'
 
 const PaymentStatus1 = () => {
   return (
-    <div className='border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl mb-10'>
-      <div className=' division col-12 bg-blue-600 mb-5 rounded-xl p-3' role="region" aria-labelledby="Cap1" tabIndex="0">
+    <div className=' shadow-lg shadow-black rounded-xl mb-10'>
+      <div className=' division col-12 bg-blue-900 mb-5 rounded-xl p-3' role="region" aria-labelledby="Cap1" tabIndex="0">
         <table className='table w-full rounded-xl flex items-center justify-center'>
-          <h4 className="font-semibold text-2xl text-yellow-500 mb-5">Payment Status</h4>
+          <h4 className="font-semibold text-2xl text-white mb-5">Payment Status</h4>
           <tr className='tr text-white font-semibold flex items-center justify-between'>
             <th className='th'> Client Name </th>
             <th className='th'> Order No </th>

@@ -120,7 +120,7 @@ const AdminStudentAdd = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/allStudent");
+        navigate("/pendingStudent");
       })
       .catch((error) => {
         Swal.fire({

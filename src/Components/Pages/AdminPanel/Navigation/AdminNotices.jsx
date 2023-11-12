@@ -1,21 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminNotices = () => {
 
-  // post method
-  // const [id, setid] = useState("");
   const [title, setTitle] = useState("");
-  // const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
-  // const [phoneNo, setphoneNo] = useState("");
   const [description, setDescription] = useState("");
   const [pdf, setPdf] = useState("");
-  const navigate = useNavigate();
 
   // handle control --------------------
   const handleTitleChange = (e) => {
@@ -40,12 +34,9 @@ const handleSubmit = (e) => {
 
   e.preventDefault();
   const data = new FormData();
-  // data.append("id", id);
   data.append("title",title);
   data.append("subject", subject);
   data.append("description", description);
-  // data.append("email", email);
-  // data.append("phoneNo", phoneNo);
   data.append("pdf", pdf);
   console.log(data);
   console.log("Selected pdf:", pdf);
@@ -57,12 +48,9 @@ const handleSubmit = (e) => {
     .then((res) => {
       console.log("Data:", res.data);
       // to refresh to form ---------------
-      // setid("");
       setTitle("");
       setSubject("");
       setDescription("");
-      // setEmail("");
-      // setphoneNo("");
       setPdf("");
       Swal.fire({
         position: "center",
@@ -83,8 +71,6 @@ const handleSubmit = (e) => {
       });
     });
 };
-
-
 
     return (
         <div className="flex justify-between">
@@ -129,9 +115,9 @@ const handleSubmit = (e) => {
                 </div>
   {/* subject section  */}
                   <div>
-                    <label htmlFor="subject">:</label>
+                    <label htmlFor="subject">Subject:</label>
                     <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
                       // placeholder="Add Email"
                       type="subject"
                       name="subject"

@@ -1,7 +1,25 @@
+import { useEffect, useState } from 'react';
 import unknownPhoto from '../../../../public/images/Unknown.png'
 import backgroudphoto from '../../../../public/images/tree.jpg'
+import axios from 'axios';
 
 const Employees = () => {
+
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+      axios
+        .get("https://example.com/api/allStudents")
+        .then((res) => {
+          setEmployees(res.data);
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+        });
+    }, []);
+  
+    console.log(employees);
+
     return (
 <div>
 <div
@@ -23,139 +41,33 @@ const Employees = () => {
                     <img className='w-[350px] h-[50px]' src="../../../../public/icons/hrLine.png" alt="" />
                 </div>
 </div>
-
-            {/* information section  */}
-            <div className="mt-10 max-w-screen-xl mx-auto ">
-                {/* our team seciton  */}
-                <div>
-                    {/* our team information */}
-                    <div className='mt-10'>
-                        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
-
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Babul</h1>
-                                <p className='flex justify-center font-semibold  uppercase'>General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Babul</h1>
-                                <p className='flex justify-center font-semibold  uppercase'>General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Babul</h1>
-                                <p className='flex justify-center font-semibold  uppercase'>General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Babul</h1>
-                                <p className='flex justify-center font-semibold  uppercase'>General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Babul</h1>
-                                <p className='flex justify-center font-semibold  uppercase'>General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-200' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold  text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold  uppercase'> General Manager</p>
-                            </div>
-                            </div>
-
-                        </div>
-                    </div>
+      {/* information section  */}
+      <div className="mt-10 max-w-screen-xl mx-auto ">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {employees.map((employee) => {
+            <div
+              key={employee.id}
+              className="flex lg:justify-end md:justify-end sm: justify-center"
+            >
+              <div>
+                <div className="flex justify-center">
+                  <img
+                    className="w-[350px] rounded-xl bg-yellow-200"
+                    src={employee.image}
+                    alt=""
+                  />
                 </div>
-            </div>
+                <h1 className="flex justify-center mt-3 font-semibold  text-2xl uppercase">
+                  {employee.name}
+                </h1>
+                <p className="flex justify-center font-semibold  uppercase">
+                  {employee.designation}
+                </p>
+              </div>
+            </div>;
+          })}
+        </div>
+      </div>
  </div>
     );
 };

@@ -44,8 +44,10 @@ const options = {
 
 const Transaction = () => {
   return (
-    <div className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl bg-blue-600  px-5 pt-7.5 pb-5 sm: w-[300px] md:w-full lg:w-[400px] lg:h-[550px] flex items-center">
-      <div className="bg-blue-600">
+    <div className=" shadow-xl shadow-black 
+    rounded-xl bg-blue-900  px-5 pt-7.5 pb-5 
+    sm: w-[300px] md:w-full lg:w-[400px] lg:h-[550px] flex items-center">
+      <div className="bg-blue-900">
         <div className="mb-3 justify-between gap-4 sm:flex lg:flex md:flex">
           <div>
             <h5 className="text-xl font-semibold  text-white">
@@ -57,7 +59,7 @@ const Transaction = () => {
               <select
                 name=""
                 id=""
-                className="bg-blue-600 text-sm text-white font-medium outline-none"
+                className="bg-blue-900 text-sm text-white font-medium outline-none"
               >
                 <option value="monthly">Monthly</option>
                 <option value="yearly">Yearly</option>

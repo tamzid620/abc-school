@@ -9,11 +9,11 @@ const DashBoardBody = () => {
   return (
     <div className="text-white ">
       {/* search panel  */}
-      <div className="me-5 ">
+      <div className="ms-4 ">
         <SearchPanel />
       </div>
       {/* rest of the body  */}
-      <div className="me-12">
+      <div className="me-12 ">
         <div className="mt-24 mb-10 w-full max-w-screen-lg"><NumberStatus /></div>
         <div className="lg:flex  gap-3 w-full max-w-screen-lg">
           <div className="col-span-4 lg:col-span-4 sm: mb-10 "><Transaction /></div>

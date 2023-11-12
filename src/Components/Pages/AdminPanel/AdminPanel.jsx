@@ -28,7 +28,7 @@ const AdminPanel = () => {
       };
 
       axios
-        .get(`http://sml4kzlfjc.ap.loclx.io/api/login`, {
+        .get(`https://aspnzzpcvz.ap.loclx.io/api/login`, {
           headers: headers,
         })
         .then((res) => {
@@ -43,7 +43,7 @@ const AdminPanel = () => {
   console.log(studentData);
 
   return (
-    <div className="flex justify-between gap-1">
+    <div className="flex justify-between gap-1 bg-gray-400">
       {/* drawer section  */}
       <Drawer/>
       {/* adminbody  */}

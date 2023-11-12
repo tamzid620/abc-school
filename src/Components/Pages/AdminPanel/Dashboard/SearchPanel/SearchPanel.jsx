@@ -7,15 +7,15 @@ const SearchPanel = () => {
   return (
     <div>
 <div className="flex justify-between items-center fixed
- bg-blue-600 border-b-2 border-blue-400
-  lg:px-16 py-2 lg:-ms-10 md:ms-[70px] sm: px-28 sm: ms-10 
+ bg-blue-900 border-b-2 border-blue-300
+  lg:px-16 py-2 lg:-ms-9 md:ms-[70px] sm: px-28 sm: ms-10 
   z-10">
       {/* search section  */}
       <div className=" sm: hidden lg:flex md:flex">
         <input type="text" placeholder="Search Setting" className="input input-bordered input-success lg:w-[700px] md:w-[350px]" />
         <button
           title="Wishlist"
-          className=" text-white hover:text-blue-900 font-bold px-3 py-1
+          className=" text-white hover:text-blue-300 font-bold px-3 py-1
       rounded-md"> <IoSearchCircleSharp className="w-[30px] h-[30px]" />
         </button>
       </div>
@@ -28,7 +28,7 @@ const SearchPanel = () => {
           {/* message icon  */}
           <button
             title="Wishlist"
-            className=" text-white hover:text-blue-900 font-bold px-3 py-1
+            className=" text-white hover:text-blue-300 font-bold px-3 py-1
       rounded-md"> <BiSolidMessageRounded className="w-[25px] h-[25px]" />
           </button>
 

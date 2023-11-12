@@ -8,7 +8,7 @@ const AmountSecion = () => {
       <div className="lg:flex md:flex gap-5 mt-5 justify-center">
 
       {/* Total Amount Debit */}
- <div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 rounded-xl lg:px-7 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
+ <div className="flex items-center shadow-xl shadow-black bg-blue-900 rounded-xl lg:px-7 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
         <div>
               <h5 className="text-lg text-white font font-semibold mb-2">Total Amount Debit</h5>
           <div className="lg:flex items-center gap-10">
@@ -29,7 +29,7 @@ const AmountSecion = () => {
         </div>
 
         {/* Total Amount Credit  */}
-<div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 rounded-xl lg:px-7 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
+<div className="flex items-center shadow-xl shadow-black bg-blue-900 rounded-xl lg:px-7 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
         <div>
               <h5 className="text-lg text-white font font-semibold mb-2">Total Amount Credit</h5>
           <div className="lg:flex items-center gap-10">
@@ -50,7 +50,7 @@ const AmountSecion = () => {
         </div>
 
         {/* Purchase */}
-<div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 rounded-xl lg:px-7 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
+<div className="flex items-center shadow-xl shadow-black bg-blue-900 rounded-xl lg:px-7 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
         <div>
               <h5 className="text-lg text-white font font-semibold mb-2">Purchase</h5>
           <div className="lg:flex items-center gap-10">

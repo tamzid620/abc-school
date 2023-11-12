@@ -5,8 +5,8 @@ const NumberStatus = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
 {/* ----------------------Number Status ------------------------- */}
  {/* cart-One  */}
- <div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
+ <div className="rounded-xl  shadow-xl shadow-black  bg-blue-900 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-gray-500">
         <svg
           className="fill-primary "
           width="22"
@@ -31,7 +31,7 @@ const NumberStatus = () => {
           <h4 className="text-2xl font-semibold text-white">
             $3.456K
           </h4>
-          <span className="text-md font-medium">Total views</span>
+          <span className="text-md text-gray-400 font-bold">Total views</span>
         </div>
 
         <span className="flex items-center gap-1 text-md font-semibold text-green-500">
@@ -53,8 +53,8 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-Two  */}
-<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
+<div className="rounded-xl  shadow-xl shadow-black  bg-blue-900 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-gray-500">
         <svg
           className="fill-primary"
           width="20"
@@ -83,10 +83,10 @@ const NumberStatus = () => {
           <h4 className="text-2xl font-semibold ">
             $45,2K
           </h4>
-          <span className="text-md font-medium">Total Profit</span>
+          <span className="text-md text-gray-400 font-bold">Total Profit</span>
         </div>
 
-        <span className="flex items-center gap-1 text-md font-medium  text-green-500">
+        <span className="flex items-center gap-1 text-md font-semibold text-green-500">
           4.35% <BsArrowUp/>
           <svg
             className=" text-green-500"
@@ -105,8 +105,8 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-three  */}
-<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
+<div className="rounded-xl  shadow-xl shadow-black  bg-blue-900 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-gray-500">
         <svg
           className="fill-primary"
           width="22"
@@ -126,15 +126,15 @@ const NumberStatus = () => {
         </svg>
       </div>
 
-      <div className="mt-4 flex items-end justify-between">
+      <div className="mt-4 flex items-end justify-between gap-2">
         <div>
           <h4 className="text-2xl font-semibold">
             2.450
           </h4>
-          <span className="text-md font-medium">Total Product</span>
+          <span className="text-md text-gray-400 font-bold">TotalProduct </span>
         </div>
 
-        <span className="flex items-center gap-1 text-md font-medium  text-green-500">
+        <span className="flex items-center gap-1 text-md font-semibold text-green-500">
           2.59% <BsArrowUp/>
           <svg
             className=" text-green-500"
@@ -153,8 +153,8 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-four  */}
-<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
+<div className="rounded-xl  shadow-xl shadow-black  bg-blue-900 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-gray-500">
         <svg
           className="fill-primary"
           width="22"
@@ -183,10 +183,10 @@ const NumberStatus = () => {
           <h4 className="text-2xl font-semibold ">
             3.456
           </h4>
-          <span className="text-md font-medium">Total Users</span>
+          <span className="text-md text-gray-400 font-bold">Total Users</span>
         </div>
 
-        <span className="flex items-center gap-1 text-md font-medium text-red-500">
+        <span className="flex items-center gap-1 text-md font-semibold text-red-500">
           0.95% <BsArrowDown/>
           <svg
             className="text-red-500"
