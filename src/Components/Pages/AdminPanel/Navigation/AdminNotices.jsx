@@ -3,9 +3,13 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AdminNotices = () => {
 
+  const [adminNotice, setAdminNotice] = useState([])
+  const navigate = useNavigate()
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
@@ -25,6 +29,39 @@ const AdminNotices = () => {
     setPdf(e.target.files[0]);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+
+      axios
+        .get(`http://127.0.0.1:8000/api/login`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setAdminNotice(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [navigate]);
+  console.log(adminNotice);
+
+  // handle submit button ----------------
 const handleSubmit = (e) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const headers = {

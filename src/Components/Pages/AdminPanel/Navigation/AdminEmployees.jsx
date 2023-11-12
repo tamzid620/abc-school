@@ -37,7 +37,7 @@ const AdminEmployees = () => {
           setAdminEmployees(res.data);
         })
         .catch((error) => {
-          setAdminEmployees(error);
+          console.log(error);
         });
     }
   }, [navigate]);
