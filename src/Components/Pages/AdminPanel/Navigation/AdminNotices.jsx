@@ -8,27 +8,27 @@ import Drawer from "../Dashboard/SearchPanel/Drawer";
 const AdminNotices = () => {
 
   // post method
-  const [id, setid] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [id, setid] = useState("");
+  const [title, setTitle] = useState("");
+  // const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
-  const [phoneNo, setphoneNo] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [image, setImage] = useState("");
+  // const [phoneNo, setphoneNo] = useState("");
+  const [description, setDescription] = useState("");
+  const [pdf, setPdf] = useState("");
   const navigate = useNavigate();
 
   // handle control --------------------
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleSubjectChange = (e) => {
+    setSubject(e.target.value);
   }; 
-    const handledesignationChange = (e) => {
-      setDesignation(e.target.value);
+    const handleDescriptionChange = (e) => {
+      setDescription(e.target.value);
     };
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+  const handlePdfChange = (e) => {
+    setPdf(e.target.files[0]);
   };
 
 const handleSubmit = (e) => {
@@ -40,15 +40,15 @@ const handleSubmit = (e) => {
 
   e.preventDefault();
   const data = new FormData();
-  data.append("id", id);
-  data.append("name", name);
+  // data.append("id", id);
+  data.append("title",title);
   data.append("subject", subject);
-  data.append("designation", designation);
-  data.append("email", email);
-  data.append("phoneNo", phoneNo);
-  data.append("image", image);
+  data.append("description", description);
+  // data.append("email", email);
+  // data.append("phoneNo", phoneNo);
+  data.append("pdf", pdf);
   console.log(data);
-  console.log("Selected Image:", image);
+  console.log("Selected pdf:", pdf);
   // post method --------------
   axios
     .post("http://127.0.0.1:8000/api/student-update", data, {
@@ -57,13 +57,13 @@ const handleSubmit = (e) => {
     .then((res) => {
       console.log("Data:", res.data);
       // to refresh to form ---------------
-      setid("");
-      setName("");
+      // setid("");
+      setTitle("");
       setSubject("");
-      setDesignation("");
-      setEmail("");
-      setphoneNo("");
-      setImage("");
+      setDescription("");
+      // setEmail("");
+      // setphoneNo("");
+      setPdf("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -71,7 +71,7 @@ const handleSubmit = (e) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/adminTeachers");
+      window.location.reload()
     })
     .catch((error) => {
       Swal.fire({
@@ -105,68 +105,68 @@ const handleSubmit = (e) => {
               </h1>
               <hr className="border border-black mb-8" />
   
-              {/* Edit form section  */}
+{/* Edit form section  */}
               {/* form section  */}
               <form
                 onSubmit={handleSubmit}
                 className="bg-gray-100 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
               >
-  {/*id,  name and emai section  */}
+  {/* title and subject section  */}
    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
   
-  {/* name section   */}
+  {/* title section   */}
                 <div>
-                  <label htmlFor="name">Name:</label>
+                  <label htmlFor="title">Title:</label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                     // placeholder="Add Name"
                     type="text"
-                    name="name"
-                    id="name"
-                    value={name}
-                    onChange={handleNameChange}
+                    name="title"
+                    id="title"
+                    value={title}
+                    onChange={handleTitleChange}
                   />
                 </div>
-  {/* email section  */}
+  {/* subject section  */}
                   <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="subject">:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       // placeholder="Add Email"
-                      type="email"
-                      name="email"
-                      id="email"
-                      value={email}
-                      onChange={handleEmailChange}
+                      type="subject"
+                      name="subject"
+                      id="subject"
+                      value={subject}
+                      onChange={handleSubjectChange}
                     />
                   </div>
   </div>
   
   
-  {/* designation section  */}
+  {/* Discription section  */}
                   <div>
-                    <label htmlFor="designation">designation:</label>
+                    <label htmlFor="description">description:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       // placeholder="Add Mother Name"
                       type="text"
-                      name="designation"
-                      id="designation"
-                      value={designation}
-                      onChange={handledesignationChange}
+                      name="description"
+                      id="description"
+                      value={description}
+                      onChange={handleDescriptionChange}
                     />
                   </div>
   
-  {/* picture section  */}
+  {/* pdf section  */}
                 <div>
-                  <label htmlFor="file">Picture: </label> <br />
+                  <label htmlFor="file">PDF Link: </label> <br />
                   <input
                     className="file-input file-input-bordered file-input-primary w-full"
                     type="file"
                     name="file"
                     id="file"
                     // value={image}
-                    onChange={handleImageChange}
+                    onChange={handlePdfChange}
                   />
                 </div>
 

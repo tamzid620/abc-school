@@ -7,7 +7,7 @@ const EventList = () => {
     return (
         <div className="">
             <div>
-                <div className=" border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black rounded-xl sm: w-[300px] md:w-full lg:w-full lg:h-[550px] px-3">
+                <div className=" border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 rounded-xl sm: w-[300px] md:w-full lg:w-full lg:h-[550px] px-3">
 
                     <div className="flex justify-between items-center mb-5 py-2">
                         <div><h4 className="card-title mb-1t text-white">Event List</h4></div>

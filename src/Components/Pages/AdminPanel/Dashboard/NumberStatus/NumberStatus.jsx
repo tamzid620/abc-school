@@ -5,8 +5,8 @@ const NumberStatus = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
 {/* ----------------------Number Status ------------------------- */}
  {/* cart-One  */}
- <div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
+ <div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
         <svg
           className="fill-primary "
           width="22"
@@ -53,8 +53,8 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-Two  */}
-<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
+<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
         <svg
           className="fill-primary"
           width="20"
@@ -105,8 +105,8 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-three  */}
-<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
+<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
         <svg
           className="fill-primary"
           width="22"
@@ -153,8 +153,8 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-four  */}
-<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black text-white py-6 px-6">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
+<div className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-blue-600 text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-white">
         <svg
           className="fill-primary"
           width="22"
