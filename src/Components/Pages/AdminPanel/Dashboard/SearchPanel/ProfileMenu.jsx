@@ -6,8 +6,40 @@ import {
     Avatar,
     Typography,
   } from "@material-tailwind/react";
-   
+import axios from "axios";
+import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
+  
   export function ProfileMenu() {
+
+//   logout function ---------------
+const logoutSubmit = (e) => {
+  e.preventDefault();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
+  };
+  axios
+    .post(`http://sml4kzlfjc.ap.loclx.io/api/student-logout`, null, {
+      headers: headers,
+    })
+    .then((res) => {
+      if (res.data.status === "405") {
+        localStorage.removeItem("token", res.data.token);
+        localStorage.removeItem("user", res.data.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        Navigate("/adminlogin");
+      }
+    });
+};
+
     return (
       <Menu>
         <MenuHandler>
@@ -109,7 +141,7 @@ import {
                 fill="#90A4AE"
               />
             </svg>
-            <Typography variant="small" className="font-medium">
+            <Typography onClick={logoutSubmit} variant="small" className="font-medium">
               Sign Out
             </Typography>
           </MenuItem>

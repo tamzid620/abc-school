@@ -116,7 +116,7 @@ const AdminStudentAdd = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "updated Data successfully",
+          title: res.data.message,
           showConfirmButton: false,
           timer: 1500,
         });

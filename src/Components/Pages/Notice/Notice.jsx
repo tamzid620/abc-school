@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import backgroudphoto from "../../../../public/images/tree.jpg";
 import axios from "axios";
+import { BsFiletypePdf } from "react-icons/bs";
 
 const Notice = () => {
   const [notices, setNotices] = useState([]);
@@ -16,7 +17,6 @@ const Notice = () => {
       });
   }, []);
   console.log(notices);
-
 
   return (
     <div>
@@ -56,20 +56,32 @@ const Notice = () => {
               style={{ fontFamily: "Mooli, sans-serif" }}
             >
               <td className="w-1/2 border-r-2">Notice</td>
-              <td className="w-1/4">Publish Date</td>
+              <td className="w-1/6 border-r-2">Publish Date</td>
+              <td className="w-1/6 border-r-2">Action</td>
             </tr>
           </thead>
           <hr />
           <tbody>
             {notices.map((notice) => {
               <tr key={notice.id} className="flex justify-between w-full">
-                <td className="w-1/2 border-r-2">
+              <td className="w-1/2 border-r-2">
                 <a href={notice.pdfUrl} target="_blank" rel="noopener noreferrer">
-                  {notice.pdftitle}</a>
-                  </td>
-                <td className="w-1/4">{notice.date}</td>
-              </tr>;
+                {notice.pdftitle}
+                </a>
+              </td>
+              <td className="w-1/4 border-r-2 flex justify-center">{notice.date}</td>
+              <td className="w-1/4 flex justify-center py-2"> <BsFiletypePdf color="red" size={35}/> </td>
+            </tr>
             })}
+            <tr className="flex justify-between w-full">
+              <td className="w-1/2 border-r-2">
+                <a href="/" target="_blank" rel="noopener noreferrer">
+                class Off Notice
+                </a>
+              </td>
+              <td className="w-1/4 border-r-2 flex justify-center">10 August 2023</td>
+              <td className="w-1/4 flex justify-center py-2"> <BsFiletypePdf color="red" size={35}/> </td>
+            </tr>
           </tbody>
           <hr />
         </table>
