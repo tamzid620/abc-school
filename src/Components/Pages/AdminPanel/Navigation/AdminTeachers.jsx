@@ -32,11 +32,11 @@ const AdminTeachers = () => {
       };
 
       axios
-        .get(`http://127.0.0.1:8000/api/admin-login`, {
+        .get(`http://127.0.0.1:8000/api/teacher-listApi`, {
           headers: headers,
         })
         .then((res) => {
-          setAdminTeachers(res.data);
+          setAdminTeachers(res.data.teacher);
         })
         .catch((error) => {
           setAdminTeachers(error);
@@ -44,7 +44,7 @@ const AdminTeachers = () => {
     }
   }, [navigate]);
 
-  console.log(adminTeachers.teacher);
+  console.log(adminTeachers);
 
   // delete section
   const handleDelete = (teacherId) => {

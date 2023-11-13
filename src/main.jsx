@@ -46,6 +46,10 @@ import AdminPayment from "./Components/Pages/AdminPanel/Navigation/AdminPayment.
 import AdminEmployees from "./Components/Pages/AdminPanel/Navigation/AdminEmployees.jsx";
 import AdminEmployeesEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeesEdit.jsx";
 import AdminEmployeesAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeesAdd.jsx";
+import AdminRoutineAdd from "./Components/Pages/AdminPanel/Navigation/AdminRoutineAdd.jsx";
+import AdminRoutineEdit from "./Components/Pages/AdminPanel/Navigation/AdminRoutineEdit.jsx";
+import AdminSyllabusEdit from "./Components/Pages/AdminPanel/Navigation/AdminSyllabusEdit.jsx";
+import AdminSyllabusAdd from "./Components/Pages/AdminPanel/Navigation/AdminSyllabusAdd.jsx";
 
 const router = createBrowserRouter([
   {
@@ -221,10 +225,26 @@ const router = createBrowserRouter([
         path: "/adminRoutine",
         element: <AdminRoutine />,
       },
+      {
+        path: "/adminRoutineEdit/:routineId",
+        element: <AdminRoutineEdit />,
+      },
+      {
+        path: "/adminRoutineAdd",
+        element: <AdminRoutineAdd />,
+      },
       // admin syllabus section -----------------
       {
         path: "/adminSyllabus",
         element: <AdminSyllabus/>,
+      },
+      {
+        path: "/adminSyllabusEdit/:syllabusId",
+        element: <AdminSyllabusEdit/>,
+      },
+      {
+        path: "/adminSyllabusAdd",
+        element: <AdminSyllabusAdd/>,
       },
       // admin examination section -----------------
       {

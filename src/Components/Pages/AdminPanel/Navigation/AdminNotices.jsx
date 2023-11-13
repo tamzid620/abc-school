@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminNotices = () => {
-  const [adminNotices, setAdminNotices] = useState([]);
+  const [adminNotices, setAdminNotices] = useState({ notice: [] });
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,12 +27,12 @@ const AdminNotices = () => {
     } else {
       const user = JSON.parse(localStorage.getItem("user"));
       const headers = {
-        accept: "application/json",
+        accept: "application/json", 
         Authorization: "Bearer " + user.token,
       };
-
+// get notice data ---------------
       axios
-        .get(`http://127.0.0.1:8000/api/admin-login`, {
+        .get(`http://127.0.0.1:8000/api/notice-listApi`, {
           headers: headers,
         })
         .then((res) => {
@@ -44,7 +44,7 @@ const AdminNotices = () => {
     }
   }, [navigate]);
 
-  console.log(adminNotices);
+  console.log(adminNotices.notice);
 
   // delete section
   const handleDelete = (noticeId) => {
@@ -55,7 +55,7 @@ const AdminNotices = () => {
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/delete-notice/${noticeId}`, {
+      .delete(`http://127.0.0.1:8000/api/notice-delete/${noticeId}`, {
         headers: headers,
       })
       .then(() => {
@@ -69,7 +69,7 @@ const AdminNotices = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminNotices");
+        window.location.reload()
       })
       .catch((error) => {
         Swal.fire({
@@ -79,7 +79,7 @@ const AdminNotices = () => {
           text: error.message,
           showConfirmButton: true,
         });
-        navigate("/adminNotices");
+        window.location.reload()
       });
   };
   // pagination section -----------
@@ -159,51 +159,48 @@ const AdminNotices = () => {
               <table className="table ">
                 {/* head */}
                 <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>Email</th>
+                <tr className="flex justify-between w-full font-bold">
+                    <th>Notice</th>
+                    <th>Published Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentNotices.map((notice) => {
-                    <tr key={notice.id} className="flex justify-between w-full">
-                      <td className="w-1/2 border-r-2">
-                        <a
-                          href={notice.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {notice.pdftitle}
-                        </a>
-                      </td>
-                      <td className="w-1/4 border-r-2 flex justify-center">
-                        {notice.date}
-                      </td>
-                      <td className="w-1/4 flex justify-center py-2">
-                        <div className="flex gap-2">
-                          {/* Edit button  */}
-                          <Link
-                            to={`/adminNoticesEdit/${notice.id}`}
-                            // "/adminNoticesEdit"
-                          >
-                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                              Edit
-                            </button>
-                          </Link>
-                          {/* Delete button   */}
-                          <button
-                            onClick={() => handleDelete(notice.id)}
-                            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>;
-                  })}
+                {currentNotices.map((notice) => (
+    <tr key={notice.id} className="flex justify-between w-full">
+      <td className="w-1/2 ">
+        <a
+          href={notice.pdflink} 
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {notice.subject}
+        </a>
+      </td>
+      <td className="w-1/4  flex justify-center">
+        {notice.created_at}
+      </td>
+      <td className="w-1/4 flex justify-center py-2">
+        <div className="flex gap-2">
+          {/* Edit button  */}
+          <Link
+            to={`/adminNoticesEdit/${notice.id}`}
+          >
+            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+              Edit
+            </button>
+          </Link>
+          {/* Delete button   */}
+          <button
+            onClick={() => handleDelete(notice.id)}
+            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+          >
+            Delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  ))}
                 </tbody>
               </table>
               {/* pagination section ------------- */}
@@ -211,7 +208,7 @@ const AdminNotices = () => {
                 {Array.from(
                   {
                     length: Math.ceil(
-                      adminNotices.teacher.length / noticesPerPage
+                      adminNotices.notice.length / noticesPerPage
                     ),
                   },
                   (_, index) => (
