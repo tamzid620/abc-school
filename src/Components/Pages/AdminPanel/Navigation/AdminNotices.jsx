@@ -1,33 +1,17 @@
-import axios from "axios";
-import { useState } from "react";
-import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
-import Drawer from "../Dashboard/SearchPanel/Drawer";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
+import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminNotices = () => {
+  const [adminNotices, setAdminNotices] = useState([]);
 
-  const [adminNotice, setAdminNotice] = useState([])
-  const navigate = useNavigate()
-  const [title, setTitle] = useState("");
-  const [subject, setSubject] = useState("");
-  const [description, setDescription] = useState("");
-  const [pdf, setPdf] = useState("");
-
-  // handle control --------------------
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-  const handleSubjectChange = (e) => {
-    setSubject(e.target.value);
-  }; 
-    const handleDescriptionChange = (e) => {
-      setDescription(e.target.value);
-    };
-  const handlePdfChange = (e) => {
-    setPdf(e.target.files[0]);
-  };
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const noticesPerPage = 5;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -48,165 +32,209 @@ const AdminNotices = () => {
       };
 
       axios
-        .get(`http://127.0.0.1:8000/api/login`, {
+        .get(`http://127.0.0.1:8000/api/admin-login`, {
           headers: headers,
         })
         .then((res) => {
-          setAdminNotice(res.data);
+          setAdminNotices(res.data);
         })
         .catch((error) => {
-          console.log(error);
+          setAdminNotices(error);
         });
     }
   }, [navigate]);
-  console.log(adminNotice);
 
-  // handle submit button ----------------
-const handleSubmit = (e) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const headers = {
-    accept: "application/json",
-    Authorization: "Bearer " + user.token,
+  console.log(adminNotices);
+
+  // delete section
+  const handleDelete = (noticeId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    axios
+      .delete(`http://127.0.0.1:8000/api/delete-notice/${noticeId}`, {
+        headers: headers,
+      })
+      .then(() => {
+        setAdminNotices((prevNotices) =>
+          prevNotices.filter((notice) => notice.notice_id !== noticeId)
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Teacher deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminNotices");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting Teacher",
+          text: error.message,
+          showConfirmButton: true,
+        });
+        navigate("/adminNotices");
+      });
+  };
+  // pagination section -----------
+  const indexOfLastNotice = currentPage * noticesPerPage;
+  const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
+  const currentNotices = adminNotices.notice.slice(
+    indexOfFirstNotice,
+    indexOfLastNotice
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
-  e.preventDefault();
-  const data = new FormData();
-  data.append("title",title);
-  data.append("subject", subject);
-  data.append("description", description);
-  data.append("pdf", pdf);
-  console.log(data);
-  console.log("Selected pdf:", pdf);
-  // post method --------------
-  axios
-    .post("http://127.0.0.1:8000/api/student-update", data, {
-      headers: headers,
-    })
-    .then((res) => {
-      console.log("Data:", res.data);
-      // to refresh to form ---------------
-      setTitle("");
-      setSubject("");
-      setDescription("");
-      setPdf("");
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "updated Data successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      window.location.reload()
-    })
-    .catch((error) => {
-      Swal.fire({
-        position: "center",
-        icon: "warning",
-        title: ("An error occurred:", error),
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    });
-};
-
-    return (
-        <div className="flex justify-between">
-        <div className="w-full">
-          <Drawer />
+  return (
+    <div className="flex justify-between">
+      <div className=" w-full">
+        <Drawer />
+      </div>
+      {/* table div  */}
+      <div
+        className="
+        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]"
+      >
+        <div>
+          <SearchPanel />
         </div>
-        {/* form div  */}
-        <div className="
-          w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
-          <div className="">
-            <SearchPanel />
-          </div>
-          <div className="flex justify-center mt-20">
-            <div className="mt-20 w-full">
-              {/* AdminStudentInfo section  */}
-              <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              add Notice
-              </h1>
-              <hr className="border border-black mb-8" />
-  
-{/* Edit form section  */}
-              {/* form section  */}
-              <form
-                onSubmit={handleSubmit}
-                className="bg-gray-100 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
-              >
-  {/* title and subject section  */}
-   <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
-  
-  {/* title section   */}
-                <div>
-                  <label htmlFor="title">Title:</label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
-                    // placeholder="Add Name"
-                    type="text"
-                    name="title"
-                    id="title"
-                    value={title}
-                    onChange={handleTitleChange}
-                  />
-                </div>
-  {/* subject section  */}
-                  <div>
-                    <label htmlFor="subject">Subject:</label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
-                      // placeholder="Add Email"
-                      type="subject"
-                      name="subject"
-                      id="subject"
-                      value={subject}
-                      onChange={handleSubjectChange}
-                    />
-                  </div>
-  </div>
-  
-  
-  {/* Discription section  */}
-                  <div>
-                    <label htmlFor="description">description:</label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      // placeholder="Add Mother Name"
-                      type="text"
-                      name="description"
-                      id="description"
-                      value={description}
-                      onChange={handleDescriptionChange}
-                    />
-                  </div>
-  
-  {/* pdf section  */}
-                <div>
-                  <label htmlFor="file">PDF Link: </label> <br />
-                  <input
-                    className="file-input file-input-bordered file-input-primary w-full"
-                    type="file"
-                    name="file"
-                    id="file"
-                    // value={image}
-                    onChange={handlePdfChange}
-                  />
-                </div>
+        <div className="flex justify-center">
+          <div className="mt-20 w-full ">
+            {/* AdminNoticeInfo section  */}
+            <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
+              All Notices
+            </h1>
+            <hr className="border border-black mb-8" />
 
-  
-                <button
-                  className="bg-blue-300 hover:bg-blue-600 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
-                  type="submit"
-                >
-                  Save
-                </button>
-  
-              </form>
+            {/* add notice list section  */}
+            <div className="overflow-x-auto border ">
+              {/* search and add field  */}
+              <div className="flex justify-between items-center mx-3 mt-5">
+                {/* search input  */}
+                <div className="form-control ms-3 my-3">
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      placeholder="Search…"
+                      className="input input-bordered"
+                    />
+                    <button className="btn btn-square">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                {/* add button  */}
+                <div>
+                  <Link to="/adminNoticesAdd">
+                    <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                      Add
+                    </button>
+                  </Link>
+                </div>
+              </div>
+
+              {/* tabel section  */}
+              <table className="table ">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentNotices.map((notice) => {
+                    <tr key={notice.id} className="flex justify-between w-full">
+                      <td className="w-1/2 border-r-2">
+                        <a
+                          href={notice.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {notice.pdftitle}
+                        </a>
+                      </td>
+                      <td className="w-1/4 border-r-2 flex justify-center">
+                        {notice.date}
+                      </td>
+                      <td className="w-1/4 flex justify-center py-2">
+                        <div className="flex gap-2">
+                          {/* Edit button  */}
+                          <Link
+                            to={`/adminNoticesEdit/${notice.id}`}
+                            // "/adminNoticesEdit"
+                          >
+                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                              Edit
+                            </button>
+                          </Link>
+                          {/* Delete button   */}
+                          <button
+                            onClick={() => handleDelete(notice.id)}
+                            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>;
+                  })}
+                </tbody>
+              </table>
+              {/* pagination section ------------- */}
+              <div className="pagination my-10 flex justify-center">
+                {Array.from(
+                  {
+                    length: Math.ceil(
+                      adminNotices.teacher.length / noticesPerPage
+                    ),
+                  },
+                  (_, index) => (
+                    <button
+                      key={index}
+                      className={`btn btn-sm ${
+                        currentPage === index + 1
+                          ? "bg-blue-500 text-white"
+                          : "bg-white"
+                      }`}
+                      onClick={() => paginate(index + 1)}
+                    >
+                      {index + 1}
+                    </button>
+                  )
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default AdminNotices;

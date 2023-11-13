@@ -14,6 +14,8 @@ const Navbar = () => {
   useEffect(() => {
     setActiveDropdown(null);
   }, [location]);
+
+  
   // navlist section ------------------------------------
   const navlist = (
     <>
@@ -113,6 +115,7 @@ const Navbar = () => {
       </li>
     </>
   );
+
   // navlist section ------------------------------------
 
   return (
@@ -176,7 +179,9 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{navlist}</ul>
+            <ul className="menu menu-horizontal px-1">
+              {navlist}
+            </ul>
           </div>
           {/* login and signin options  */}
           <div className="navbar-end">

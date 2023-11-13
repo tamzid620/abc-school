@@ -60,7 +60,7 @@ const Teachers = () => {
                 <div className="flex justify-center">
                   <img
                     className="w-[350px] rounded-xl bg-yellow-200"
-                    src={teacher.image}
+                    src={teacher.imglink}
                     alt=""
                   />
                 </div>

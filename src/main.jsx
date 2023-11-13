@@ -36,6 +36,8 @@ import AdminTeachersEdit from "./Components/Pages/AdminPanel/Navigation/AdminTea
 import AdminTeachersAdd from "./Components/Pages/AdminPanel/Navigation/AdminTeachersAdd.jsx";
 import AdminStudentAdd from "./Components/Pages/AdminPanel/Navigation/AdminStudentAdd.jsx";
 import AdminNotices from "./Components/Pages/AdminPanel/Navigation/AdminNotices.jsx";
+import AdminNoticesEdit from "./Components/Pages/AdminPanel/Navigation/AdminNoticesEdit.jsx";
+import AdminNoticesAdd from "./Components/Pages/AdminPanel/Navigation/AdminNoticesAdd.jsx";
 import AdminEvent from "./Components/Pages/AdminPanel/Navigation/AdminEvent.jsx";
 import AdminRoutine from "./Components/Pages/AdminPanel/Navigation/AdminRoutine.jsx";
 import AdminSyllabus from "./Components/Pages/AdminPanel/Navigation/AdminSyllabus.jsx";
@@ -144,10 +146,12 @@ const router = createBrowserRouter([
         path: "/adminlogin",
         element: <AdminLogin />,
       },
+      // admin panel section ------------
       {
         path: "/dp",
         element: <AdminPanel />,
       },
+      // student section --------------
       {
         path: "/pendingStudent",
         element: <PendingStudent />,
@@ -168,6 +172,7 @@ const router = createBrowserRouter([
         path: "/adminStudentDetails/:studentId",
         element: <AdminStudentDetails />,
       },
+      // admin teacher section ---------------
       {
         path: "/adminTeachers",
         element: <AdminTeachers />,
@@ -180,6 +185,7 @@ const router = createBrowserRouter([
         path: "/adminTeachersAdd",
         element: <AdminTeachersAdd />,
       },
+      // admin employees seciton ----------------
       {
         path: "/adminEmployees",
         element: <AdminEmployees />,
@@ -192,26 +198,40 @@ const router = createBrowserRouter([
         path: "/adminEmployeesAdd",
         element: <AdminEmployeesAdd/>,
       },
+      // admin notice section --------------
       {
         path: "/adminNotices",
         element: <AdminNotices />,
       },
       {
+        path: "/adminNoticesEdit/:noticeId",
+        element: <AdminNoticesEdit/>,
+      },
+      {
+        path: "/adminNoticesAdd",
+        element: <AdminNoticesAdd/>,
+      },
+      // admin event seciton --------------
+      {
         path: "/adminEvent",
         element: <AdminEvent />,
       },
+      // admin routine section -----------------
       {
         path: "/adminRoutine",
         element: <AdminRoutine />,
       },
+      // admin syllabus section -----------------
       {
         path: "/adminSyllabus",
         element: <AdminSyllabus/>,
       },
+      // admin examination section -----------------
       {
         path: "/adminExamination",
         element: <AdminExamination />,
       },
+      // admin payment section -----------------
       {
         path: "/adminPayment",
         element: <AdminPayment />,

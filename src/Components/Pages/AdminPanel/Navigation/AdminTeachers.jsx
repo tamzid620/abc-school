@@ -11,7 +11,7 @@ const AdminTeachers = () => {
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const teachersPerPage = 10;
+  const teachersPerPage = 5;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -82,7 +82,7 @@ const AdminTeachers = () => {
         navigate("/adminTeachers");
       });
   };
-
+// pagination section -----------
   const indexOfLastTeacher = currentPage * teachersPerPage;
   const indexOfFirstTeacher = indexOfLastTeacher - teachersPerPage;
   const currentTeachers = adminTeachers.teacher.slice(
@@ -204,6 +204,7 @@ const AdminTeachers = () => {
                   ))}
                 </tbody>
               </table>
+              {/* pagination section ------------- */}
               <div className="pagination my-10 flex justify-center">
                 {Array.from(
                   {
@@ -226,6 +227,7 @@ const AdminTeachers = () => {
                   )
                 )}
               </div>
+              
             </div>
           </div>
         </div>
