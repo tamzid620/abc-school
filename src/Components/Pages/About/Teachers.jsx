@@ -11,7 +11,7 @@ const Teachers = () => {
     axios
       .get("https://example.com/api/allStudents")
       .then((res) => {
-        setTeachers(res.data);
+        setTeachers(res.data.teacher);
       })
       .catch((error) => {
         console.error("An error occurred:", error);
