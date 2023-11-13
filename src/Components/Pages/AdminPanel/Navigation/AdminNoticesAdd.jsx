@@ -80,7 +80,7 @@ const AdminNoticesAdd = () => {
     console.log("Selected pdf:", pdf);
     // post method --------------
     axios
-      .post("http://127.0.0.1:8000/api/student-update", data, {
+      .post("http://127.0.0.1:8000/api/add-notice", data, {
         headers: headers,
       })
       .then((res) => {
@@ -93,11 +93,11 @@ const AdminNoticesAdd = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "updated Data successfully",
+          title: "Data Added successfully",
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.reload()
+        navigate('/adminNotices')
       })
       .catch((error) => {
         Swal.fire({

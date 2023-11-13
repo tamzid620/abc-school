@@ -45,7 +45,7 @@ const AdminNoticesEdit = () => {
       };
   
       axios
-        .get(`http://127.0.0.1:8000/api/admin-notice-edit/${noticeId}`, {
+        .get(`http://127.0.0.1:8000/api/notice-edit/${noticeId}`, {
           headers: headers,
         })
         .then((response) => {
@@ -80,7 +80,7 @@ const AdminNoticesEdit = () => {
       console.log("Selected pdf:", pdf);
       // post method --------------
       axios
-        .post("http://127.0.0.1:8000/api/teacher-update", data, {
+        .post("http://127.0.0.1:8000/api/notice-update", data, {
           headers: headers,
         })
         .then((res) => {
@@ -98,7 +98,7 @@ const AdminNoticesEdit = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/adminTeachers");
+          navigate("/adminNotices");
         })
         .catch((error) => {
           Swal.fire({

@@ -79,7 +79,7 @@ const AdminNotices = () => {
           text: error.message,
           showConfirmButton: true,
         });
-        window.location.reload()
+        navigate("/adminNotices");
       });
   };
   // pagination section -----------
