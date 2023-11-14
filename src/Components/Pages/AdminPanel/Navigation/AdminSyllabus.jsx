@@ -111,7 +111,7 @@ const AdminSyllabus = () => {
           <div className="mt-20 w-full ">
             {/* AdminsyllabusInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              All syllabuss
+              All syllabi
             </h1>
             <hr className="border border-black mb-8" />
 

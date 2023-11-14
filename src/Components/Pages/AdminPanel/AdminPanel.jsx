@@ -43,7 +43,7 @@ const AdminPanel = () => {
   console.log(studentData);
 
   return (
-    <div className="flex justify-between gap-1 bg-gray-400">
+    <div className="flex justify-between gap-1 ">
       {/* drawer section  */}
       <Drawer/>
       {/* adminbody  */}

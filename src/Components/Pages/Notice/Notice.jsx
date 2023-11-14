@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import backgroudphoto from "../../../../public/images/tree.jpg";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { BsFiletypePdf } from "react-icons/bs";
 
@@ -51,7 +51,7 @@ const Notice = () => {
         </div>
       </div>
 
-      {/* information section  */}
+      {/* notice section  */}
       <div className="overflow-x-auto border mt-5 mx-3">
         <table className="table-auto w-full">
           {/* head */}
@@ -60,9 +60,9 @@ const Notice = () => {
               className="flex justify-between w-full font-bold"
               style={{ fontFamily: "Mooli, sans-serif" }}
             >
-              <td className="w-1/2 border-r-2">Notice</td>
-              <td className="w-1/6 border-r-2">Publish Date</td>
-              <td className="w-1/6 border-r-2">Action</td>
+              <td className="w-1/2">Notice</td>
+              <td className="w-1/6">Publish Date</td>
+              <td className="w-1/6">Action</td>
             </tr>
           </thead>
           <hr />
@@ -112,6 +112,7 @@ const Notice = () => {
           <hr />
         </table>
       </div>
+
     </div>
   );
 };

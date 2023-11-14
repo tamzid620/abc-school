@@ -13,7 +13,7 @@ const AdminSyllabusAdd = () => {
     const navigate = useNavigate()
     const [title, setTitle] = useState("");
     const [subject, setSubject] = useState("");
-    const [description, setDescription] = useState("");
+    const [wClass, setWclass] = useState("");
     const [pdf, setPdf] = useState("");
   
     // handle control --------------------
@@ -23,8 +23,8 @@ const AdminSyllabusAdd = () => {
     const handleSubjectChange = (e) => {
       setSubject(e.target.value);
     }; 
-      const handleDescriptionChange = (e) => {
-        setDescription(e.target.value);
+      const handlewClassChange = (e) => {
+        setWclass(e.target.value);
       };
     const handlePdfChange = (e) => {
       setPdf(e.target.files[0]);
@@ -74,7 +74,7 @@ const AdminSyllabusAdd = () => {
     const data = new FormData();
     data.append("title",title);
     data.append("subject", subject);
-    data.append("description", description);
+    data.append("wClass", wClass);
     data.append("pdf", pdf);
     console.log(data);
     console.log("Selected pdf:", pdf);
@@ -88,7 +88,7 @@ const AdminSyllabusAdd = () => {
         // to refresh to form ---------------
         setTitle("");
         setSubject("");
-        setDescription("");
+        setWclass("");
         setPdf("");
         Swal.fire({
           position: "center",
@@ -170,15 +170,15 @@ const AdminSyllabusAdd = () => {
   
   {/* Discription section  */}
                   <div>
-                    <label htmlFor="description">description:</label>
+                    <label htmlFor="wClass">Class:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       // placeholder="Add Mother Name"
                       type="text"
-                      name="description"
-                      id="description"
-                      value={description}
-                      onChange={handleDescriptionChange}
+                      name="wClass"
+                      id="wClass"
+                      value={wClass}
+                      onChange={handlewClassChange}
                     />
                   </div>
   

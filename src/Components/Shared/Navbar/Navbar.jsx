@@ -132,14 +132,14 @@ const Navbar = () => {
             style={{ fontFamily: "Tiro Bangla, serif" }}
             className="font-semibold text-4xl "
           >
-            মায়ের দোয়া স্কুল এন্ড কলেজ
+            এ.বি.সি স্কুল এন্ড কলেজ
           </span>{" "}
           <br />
           <span
             style={{ fontFamily: "Young Serif, serif" }}
             className="text-lg"
           >
-            Mayer Dua School and College
+            A.B.C School and College
           </span>
         </h1>
         <img

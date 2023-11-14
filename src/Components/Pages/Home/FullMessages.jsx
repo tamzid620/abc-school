@@ -48,7 +48,7 @@ const fullMessages = () => {
               Professor Dr. Rowan Atkinson
             </h1>
             <p style={{ fontFamily: "Young Serif, serif" }}>
-              Mayer Dua School and College
+              A.B.C School and College
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@ const fullMessages = () => {
             Message
           </h1>
           <p className="text-lg">
-            Welcome to Mayer Dua School and College, where excellence in education is
+            Welcome to A.B.C School and College, where excellence in education is
             our guiding principle. Our institution is dedicated to nurturing
             young minds, fostering creativity, and instilling a passion for
             lifelong learning. At Mayer Dua, we believe in a holistic approach to
@@ -80,7 +80,7 @@ const fullMessages = () => {
             website, and we look forward to welcoming you into the Mayer Dua family.{" "}
           </p>
           <p className="text-lg">
-            Welcome to Mayer Dua School and College, where excellence in education is
+            Welcome to A.B.C School and College, where excellence in education is
             our guiding principle. Our institution is dedicated to nurturing
             young minds, fostering creativity, and instilling a passion for
             lifelong learning. At Mayer Dua, we believe in a holistic approach to

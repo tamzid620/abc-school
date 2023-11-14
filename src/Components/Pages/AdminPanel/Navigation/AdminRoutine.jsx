@@ -147,7 +147,7 @@ const AdminRoutine = () => {
                 </div>
                 {/* add button  */}
                 <div>
-                  <Link to="/adminRoutinesAdd">
+                  <Link to="/adminRoutineAdd">
                     <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                       Add
                     </button>
@@ -181,7 +181,7 @@ const AdminRoutine = () => {
         <div className="flex gap-2">
           {/* Edit button  */}
           <Link
-            to={`/adminRoutinesEdit/${routine.id}`}
+            to={`/adminRoutineEdit/${routine.id}`}
           >
             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
               Edit
