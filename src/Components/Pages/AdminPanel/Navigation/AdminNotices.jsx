@@ -65,7 +65,7 @@ const AdminNotices = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Teacher deleted successfully",
+          title: "Notice deleted successfully",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -75,7 +75,7 @@ const AdminNotices = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting Teacher",
+          title: "Error deleting Notice",
           text: error.message,
           showConfirmButton: true,
         });
@@ -160,7 +160,7 @@ const AdminNotices = () => {
                 {/* head */}
                 <thead>
                 <tr className="flex justify-between w-full font-bold">
-                    <th>Notice</th>
+                    <th>Title</th>
                     <th>Published Date</th>
                     <th>Action</th>
                   </tr>
@@ -178,7 +178,7 @@ const AdminNotices = () => {
         </a>
       </td>
       <td className="w-1/4  flex justify-center">
-        {notice.created_at}
+        {notice.date}
       </td>
       <td className="w-1/4 flex justify-center py-2">
         <div className="flex gap-2">

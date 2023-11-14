@@ -7,11 +7,11 @@ import Swal from "sweetalert2";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminRoutine = () => {
-  const [adminNotices, setAdminNotices] = useState({ notice: [] });
+  const [adminRoutines, setAdminRoutines] = useState({ routine: [] });
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const noticesPerPage = 5;
+  const routinesPerPage = 5;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,24 +30,24 @@ const AdminRoutine = () => {
         accept: "application/json", 
         Authorization: "Bearer " + user.token,
       };
-// get notice data ---------------
+// get routine data ---------------
       axios
-        .get(`http://127.0.0.1:8000/api/notice-listApi`, {
+        .get(`http://127.0.0.1:8000/api/routine-listApi`, {
           headers: headers,
         })
         .then((res) => {
-          setAdminNotices(res.data);
+          setAdminRoutines(res.data);
         })
         .catch((error) => {
-          setAdminNotices(error);
+          setAdminRoutines(error);
         });
     }
   }, [navigate]);
 
-  console.log(adminNotices.notice);
+  console.log(adminRoutines.routine);
 
   // delete section
-  const handleDelete = (noticeId) => {
+  const handleDelete = (routineId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -55,17 +55,17 @@ const AdminRoutine = () => {
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/notice-delete/${noticeId}`, {
+      .delete(`http://127.0.0.1:8000/api/routine-delete/${routineId}`, {
         headers: headers,
       })
       .then(() => {
-        setAdminNotices((prevNotices) =>
-          prevNotices.filter((notice) => notice.notice_id !== noticeId)
+        setAdminRoutines((prevRoutines) =>
+        prevRoutines.filter((routine) => routine.routine_id !== routineId)
         );
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Teacher deleted successfully",
+          title: "Routine deleted successfully",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -75,19 +75,19 @@ const AdminRoutine = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting Teacher",
+          title: "Error deleting Routine",
           text: error.message,
           showConfirmButton: true,
         });
-        navigate("/adminNotices");
+        navigate("/adminRoutines");
       });
   };
   // pagination section -----------
-  const indexOfLastNotice = currentPage * noticesPerPage;
-  const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
-  const currentNotices = adminNotices.notice.slice(
-    indexOfFirstNotice,
-    indexOfLastNotice
+  const indexOfLastRoutine = currentPage * routinesPerPage;
+  const indexOfFirstRoutine = indexOfLastRoutine - routinesPerPage;
+  const currentRoutines = adminRoutines.routine.slice(
+    indexOfFirstRoutine,
+    indexOfLastRoutine
   );
 
   const paginate = (pageNumber) => {
@@ -109,13 +109,13 @@ const AdminRoutine = () => {
         </div>
         <div className="flex justify-center">
           <div className="mt-20 w-full ">
-            {/* AdminNoticeInfo section  */}
+            {/* AdminroutineInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              All Notices
+              All routines
             </h1>
             <hr className="border border-black mb-8" />
 
-            {/* add notice list section  */}
+            {/* add routine list section  */}
             <div className="overflow-x-auto border ">
               {/* search and add field  */}
               <div className="flex justify-between items-center mx-3 mt-5">
@@ -147,7 +147,7 @@ const AdminRoutine = () => {
                 </div>
                 {/* add button  */}
                 <div>
-                  <Link to="/adminNoticesAdd">
+                  <Link to="/adminRoutinesAdd">
                     <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                       Add
                     </button>
@@ -160,31 +160,28 @@ const AdminRoutine = () => {
                 {/* head */}
                 <thead>
                 <tr className="flex justify-between w-full font-bold">
-                    <th>Notice</th>
-                    <th>Published Date</th>
+                    <th>Title </th>
+                    <th>Class</th>
+                    <th>Section</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                {currentNotices.map((notice) => (
-    <tr key={notice.id} className="flex justify-between w-full">
+                {currentRoutines.map((routine) => (
+    <tr key={routine.id} className="flex justify-between w-full">
       <td className="w-1/2 ">
         <a
-          href={notice.pdflink} 
+          href={routine.pdflink} 
           target="_blank"
-          rel="noopener noreferrer"
-        >
-          {notice.subject}
-        </a>
+          rel="noopener noreferrer">{routine.subject}</a>
       </td>
-      <td className="w-1/4  flex justify-center">
-        {notice.created_at}
-      </td>
+      <td className="w-1/4  flex justify-center">{routine.wclass}</td>
+      <td className="w-1/4  flex justify-center">{routine.section}</td>
       <td className="w-1/4 flex justify-center py-2">
         <div className="flex gap-2">
           {/* Edit button  */}
           <Link
-            to={`/adminNoticesEdit/${notice.id}`}
+            to={`/adminRoutinesEdit/${routine.id}`}
           >
             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
               Edit
@@ -192,7 +189,7 @@ const AdminRoutine = () => {
           </Link>
           {/* Delete button   */}
           <button
-            onClick={() => handleDelete(notice.id)}
+            onClick={() => handleDelete(routine.id)}
             className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
           >
             Delete
@@ -208,7 +205,7 @@ const AdminRoutine = () => {
                 {Array.from(
                   {
                     length: Math.ceil(
-                      adminNotices.notice.length / noticesPerPage
+                      adminRoutines.routine.length / routinesPerPage
                     ),
                   },
                   (_, index) => (

@@ -9,22 +9,22 @@ import { useEffect } from "react";
 const AdminRoutineAdd = () => {
 
 
-    const [adminNotice, setAdminNotice] = useState([])
+    const [adminRoutine, setAdminRoutine] = useState([])
     const navigate = useNavigate()
     const [title, setTitle] = useState("");
-    const [subject, setSubject] = useState("");
-    const [description, setDescription] = useState("");
+    const [wClass, setWClass] = useState("");
+    const [section, setSection] = useState("");
     const [pdf, setPdf] = useState("");
   
     // handle control --------------------
     const handleTitleChange = (e) => {
       setTitle(e.target.value);
     };
-    const handleSubjectChange = (e) => {
-      setSubject(e.target.value);
+    const handleWClassChange = (e) => {
+      setWClass(e.target.value);
     }; 
-      const handleDescriptionChange = (e) => {
-        setDescription(e.target.value);
+      const handleSectionChange = (e) => {
+        setSection(e.target.value);
       };
     const handlePdfChange = (e) => {
       setPdf(e.target.files[0]);
@@ -47,20 +47,20 @@ const AdminRoutineAdd = () => {
           accept: "application/json",
           Authorization: "Bearer " + user.token,
         };
-  
+  // get method -------------------
         axios
           .get(`http://127.0.0.1:8000/api/login`, {
             headers: headers,
           })
           .then((res) => {
-            setAdminNotice(res.data);
+            setAdminRoutine(res.data);
           })
           .catch((error) => {
             console.log(error);
           });
       }
     }, [navigate]);
-    console.log(adminNotice);
+    console.log(adminRoutine);
   
     // handle submit button ----------------
   const handleSubmit = (e) => {
@@ -73,8 +73,8 @@ const AdminRoutineAdd = () => {
     e.preventDefault();
     const data = new FormData();
     data.append("title",title);
-    data.append("subject", subject);
-    data.append("description", description);
+    data.append("wClass", wClass);
+    data.append("section", section);
     data.append("pdf", pdf);
     console.log(data);
     console.log("Selected pdf:", pdf);
@@ -87,8 +87,8 @@ const AdminRoutineAdd = () => {
         console.log("Data:", res.data);
         // to refresh to form ---------------
         setTitle("");
-        setSubject("");
-        setDescription("");
+        setWClass("");
+        setSection("");
         setPdf("");
         Swal.fire({
           position: "center",
@@ -97,7 +97,7 @@ const AdminRoutineAdd = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate('/adminNotices')
+        navigate('/adminRoutines')
       })
       .catch((error) => {
         Swal.fire({
@@ -126,7 +126,7 @@ const AdminRoutineAdd = () => {
             <div className="mt-20 w-full">
               {/* AdminStudentInfo section  */}
               <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              add Notice
+              add Routine
               </h1>
               <hr className="border border-black mb-8" />
   
@@ -136,7 +136,7 @@ const AdminRoutineAdd = () => {
                 onSubmit={handleSubmit}
                 className="bg-gray-100 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
               >
-  {/* title and subject section  */}
+  {/* title and wClass section  */}
    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
   
   {/* title section   */}
@@ -152,17 +152,17 @@ const AdminRoutineAdd = () => {
                     onChange={handleTitleChange}
                   />
                 </div>
-  {/* subject section  */}
+  {/* wClass section  */}
                   <div>
-                    <label htmlFor="subject">Subject:</label>
+                    <label htmlFor="wClass">Class:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
                       // placeholder="Add Email"
-                      type="subject"
-                      name="subject"
-                      id="subject"
-                      value={subject}
-                      onChange={handleSubjectChange}
+                      type="text"
+                      name="wClass"
+                      id="wClass"
+                      value={wClass}
+                      onChange={handleWClassChange}
                     />
                   </div>
   </div>
@@ -170,15 +170,15 @@ const AdminRoutineAdd = () => {
   
   {/* Discription section  */}
                   <div>
-                    <label htmlFor="description">description:</label>
+                    <label htmlFor="section">section:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       // placeholder="Add Mother Name"
                       type="text"
-                      name="description"
-                      id="description"
-                      value={description}
-                      onChange={handleDescriptionChange}
+                      name="section"
+                      id="section"
+                      value={section}
+                      onChange={handleSectionChange}
                     />
                   </div>
   

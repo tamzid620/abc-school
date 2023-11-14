@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const AdminSyllabusAdd = () => {
 
 
-    const [adminNotice, setAdminNotice] = useState([])
+    const [adminSyllabus, setAdminSyllabus] = useState([])
     const navigate = useNavigate()
     const [title, setTitle] = useState("");
     const [subject, setSubject] = useState("");
@@ -47,20 +47,20 @@ const AdminSyllabusAdd = () => {
           accept: "application/json",
           Authorization: "Bearer " + user.token,
         };
-  
+  // get method -------------
         axios
           .get(`http://127.0.0.1:8000/api/login`, {
             headers: headers,
           })
           .then((res) => {
-            setAdminNotice(res.data);
+            setAdminSyllabus(res.data);
           })
           .catch((error) => {
             console.log(error);
           });
       }
     }, [navigate]);
-    console.log(adminNotice);
+    console.log(adminSyllabus);
   
     // handle submit button ----------------
   const handleSubmit = (e) => {
@@ -97,7 +97,7 @@ const AdminSyllabusAdd = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate('/adminNotices')
+        navigate('/adminSyllabuss')
       })
       .catch((error) => {
         Swal.fire({
@@ -126,7 +126,7 @@ const AdminSyllabusAdd = () => {
             <div className="mt-20 w-full">
               {/* AdminStudentInfo section  */}
               <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              add Notice
+              add Syllabus
               </h1>
               <hr className="border border-black mb-8" />
   

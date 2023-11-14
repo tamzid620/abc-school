@@ -49,12 +49,12 @@ const AdminNoticesEdit = () => {
           headers: headers,
         })
         .then((response) => {
-          const teacherData = response.data.user;
-          setid(teacherData.id);
-          setTitle(teacherData.title);
-          setSubject(teacherData.subject);
-          setDescription(teacherData.description);
-          setPdf(teacherData.pdf);
+          const noticeData = response.data.user;
+          setid(noticeData.id);
+          setTitle(noticeData.title);
+          setSubject(noticeData.subject);
+          setDescription(noticeData.description);
+          setPdf(noticeData.pdf);
         })
         .catch((error) => {
           console.log(error);

@@ -8,13 +8,13 @@ import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminSyllabusEdit = () => {
 
-    const { noticeId } = useParams();
+    const { syllabusId } = useParams();
 
     // post method
     const [id, setid] = useState("");
     const [title, setTitle] = useState("");
     const [subject, setSubject] = useState("");
-    const [description, setDescription] = useState("");
+    const [wclass, setWclass] = useState("");
     const [pdf, setPdf] = useState("");
     const navigate = useNavigate();
   
@@ -25,11 +25,11 @@ const AdminSyllabusEdit = () => {
     const handletitleChange = (e) => {
       setTitle(e.target.value);
     };
-    const handlesubjectChange = (e) => {
+    const handleSubjectChange = (e) => {
       setSubject(e.target.value);
     };
-      const handledescriptionChange = (e) => {
-        setDescription(e.target.value);
+      const handleWclassChange = (e) => {
+        setWclass(e.target.value);
       };
     const handlepdfChange = (e) => {
       setPdf(e.target.files[0]);
@@ -45,21 +45,21 @@ const AdminSyllabusEdit = () => {
       };
   
       axios
-        .get(`http://127.0.0.1:8000/api/notice-edit/${noticeId}`, {
+        .get(`http://127.0.0.1:8000/api/syllabus-edit/${syllabusId}`, {
           headers: headers,
         })
         .then((response) => {
-          const teacherData = response.data.user;
-          setid(teacherData.id);
-          setTitle(teacherData.title);
-          setSubject(teacherData.subject);
-          setDescription(teacherData.description);
-          setPdf(teacherData.pdf);
+          const SyllabusData = response.data.user;
+          setid(SyllabusData.id);
+          setTitle(SyllabusData.title);
+          setSubject(SyllabusData.subject);
+          setWclass(SyllabusData.wclass);
+          setPdf(SyllabusData.pdf);
         })
         .catch((error) => {
           console.log(error);
         });
-    }, [noticeId]);
+    }, [syllabusId]);
   
     // post section ----------------
     const handleSubmit = (e) => {
@@ -74,13 +74,13 @@ const AdminSyllabusEdit = () => {
       data.append("id", id);
       data.append("title", title);
       data.append("subject", subject);
-      data.append("description", description);
+      data.append("wclass", wclass);
       data.append("pdf", pdf);
       console.log(data);
       console.log("Selected pdf:", pdf);
       // post method --------------
       axios
-        .post("http://127.0.0.1:8000/api/notice-update", data, {
+        .post("http://127.0.0.1:8000/api/syllabus-update", data, {
           headers: headers,
         })
         .then((res) => {
@@ -89,7 +89,7 @@ const AdminSyllabusEdit = () => {
           setid("");
           setTitle("");
           setSubject("");
-          setDescription("");
+          setWclass("");
           setPdf("");
           Swal.fire({
             position: "center",
@@ -98,7 +98,7 @@ const AdminSyllabusEdit = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/adminNotices");
+          navigate("/adminSyllabus");
         })
         .catch((error) => {
           Swal.fire({
@@ -127,7 +127,7 @@ const AdminSyllabusEdit = () => {
             <div className="mt-20 w-full">
               {/* AdminTeachersInfo section  */}
               <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-               Notice Update 
+               Syllabus Update 
               </h1>
               <hr className="border border-black mb-8" />
   
@@ -162,23 +162,23 @@ const AdminSyllabusEdit = () => {
                       title="subject"
                       id="subject"
                       value={subject}
-                      onChange={handlesubjectChange}
+                      onChange={handleSubjectChange}
                     />
                   </div>
   </div>
   
   
-  {/* description section  */}
+  {/* wclass section  */}
                   <div>
-                    <label htmlFor="description">description:</label>
+                    <label htmlFor="wclass">class:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       // placeholder="Add Mother title"
                       type="text"
-                      title="description"
-                      id="description"
-                      value={description}
-                      onChange={handledescriptionChange}
+                      title="wclass"
+                      id="wclass"
+                      value={wclass}
+                      onChange={handleWclassChange}
                     />
                   </div>
   

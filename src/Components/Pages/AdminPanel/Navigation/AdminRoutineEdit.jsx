@@ -8,13 +8,13 @@ import Drawer from "../Dashboard/SearchPanel/Drawer";
 
 const AdminRoutineEdit = () => {
 
-    const { noticeId } = useParams();
+    const { routineId } = useParams();
 
     // post method
     const [id, setid] = useState("");
     const [title, setTitle] = useState("");
-    const [subject, setSubject] = useState("");
-    const [description, setDescription] = useState("");
+    const [wClass, setWClass] = useState("");
+    const [section, setSection] = useState("");
     const [pdf, setPdf] = useState("");
     const navigate = useNavigate();
   
@@ -25,11 +25,11 @@ const AdminRoutineEdit = () => {
     const handletitleChange = (e) => {
       setTitle(e.target.value);
     };
-    const handlesubjectChange = (e) => {
-      setSubject(e.target.value);
+    const handleWClassChange = (e) => {
+      setWClass(e.target.value);
     };
-      const handledescriptionChange = (e) => {
-        setDescription(e.target.value);
+      const handleSectionChange = (e) => {
+        setSection(e.target.value);
       };
     const handlepdfChange = (e) => {
       setPdf(e.target.files[0]);
@@ -45,21 +45,21 @@ const AdminRoutineEdit = () => {
       };
   
       axios
-        .get(`http://127.0.0.1:8000/api/notice-edit/${noticeId}`, {
+        .get(`http://127.0.0.1:8000/api/notice-edit/${routineId}`, {
           headers: headers,
         })
         .then((response) => {
-          const teacherData = response.data.user;
-          setid(teacherData.id);
-          setTitle(teacherData.title);
-          setSubject(teacherData.subject);
-          setDescription(teacherData.description);
-          setPdf(teacherData.pdf);
+          const routineData = response.data.user;
+          setid(routineData.id);
+          setTitle(routineData.title);
+          setWClass(routineData.wClass);
+          setSection(routineData.section);
+          setPdf(routineData.pdf);
         })
         .catch((error) => {
           console.log(error);
         });
-    }, [noticeId]);
+    }, [routineId]);
   
     // post section ----------------
     const handleSubmit = (e) => {
@@ -73,8 +73,8 @@ const AdminRoutineEdit = () => {
       const data = new FormData();
       data.append("id", id);
       data.append("title", title);
-      data.append("subject", subject);
-      data.append("description", description);
+      data.append("wClass", wClass);
+      data.append("section", section);
       data.append("pdf", pdf);
       console.log(data);
       console.log("Selected pdf:", pdf);
@@ -88,8 +88,8 @@ const AdminRoutineEdit = () => {
           // to refresh to form ---------------
           setid("");
           setTitle("");
-          setSubject("");
-          setDescription("");
+          setWClass("");
+          setSection("");
           setPdf("");
           Swal.fire({
             position: "center",
@@ -127,7 +127,7 @@ const AdminRoutineEdit = () => {
             <div className="mt-20 w-full">
               {/* AdminTeachersInfo section  */}
               <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-               Notice Update 
+               Routine Update 
               </h1>
               <hr className="border border-black mb-8" />
   
@@ -137,7 +137,7 @@ const AdminRoutineEdit = () => {
                 onSubmit={handleSubmit}
                 className="bg-gray-100 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
               >
-  {/*id,  title and subject section  */}
+  {/*id,  title and wClass section  */}
    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
   
   {/* title section   */}
@@ -153,32 +153,32 @@ const AdminRoutineEdit = () => {
                     onChange={handletitleChange}
                   />
                 </div>
-      {/* subject section  */}
+      {/* wClass section  */}
       <div>
-                    <label htmlFor="subject">subject:</label>
+                    <label htmlFor="wClass">Class:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
-                      title="subject"
-                      id="subject"
-                      value={subject}
-                      onChange={handlesubjectChange}
+                      title="wClass"
+                      id="wClass"
+                      value={wClass}
+                      onChange={handleWClassChange}
                     />
                   </div>
   </div>
   
   
-  {/* description section  */}
+  {/* section section  */}
                   <div>
-                    <label htmlFor="description">description:</label>
+                    <label htmlFor="section">section:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       // placeholder="Add Mother title"
                       type="text"
-                      title="description"
-                      id="description"
-                      value={description}
-                      onChange={handledescriptionChange}
+                      title="section"
+                      id="section"
+                      value={section}
+                      onChange={handleSectionChange}
                     />
                   </div>
   
