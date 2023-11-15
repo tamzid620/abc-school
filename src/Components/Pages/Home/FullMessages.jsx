@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import backgroudphoto from "../../../../public/images/tree.jpg";
 import bean from "../../../../public/images/bean.png";
 

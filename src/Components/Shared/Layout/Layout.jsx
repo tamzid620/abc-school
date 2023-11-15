@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import NavigationBar from "../Navbar/NavigationBar";
 
 
 const Layout = () => {
@@ -51,11 +52,13 @@ const Layout = () => {
         location.pathname.includes('adminSyllabusAdd') ||
 
         location.pathname.includes('adminExamination') ||
-        location.pathname.includes('adminPayment') 
+        location.pathname.includes('pendingPayment') ||
+        location.pathname.includes('approvedPayment') 
 
     return (
         <div>
             {noHeaderFooter || <Navbar />}
+            {noHeaderFooter || <NavigationBar/>}
             <Outlet />
             {noHeaderFooter || <Footer />}
         </div>

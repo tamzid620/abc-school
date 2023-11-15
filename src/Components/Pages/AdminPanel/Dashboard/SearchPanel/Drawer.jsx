@@ -7,7 +7,7 @@ import { MdArrowDropDown } from "react-icons/md";
 const Drawer = () => {
   return (
     <div>
-      <div className="z-10 drawer lg:drawer-open fixed bg-blue-900 w-[300px]">
+      <div className="z-10 drawer lg:drawer-open fixed bg-blue-900 w-[300px] ">
         <input id="my-drawer" type="checkbox" className="drawer-toggle " />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
@@ -121,12 +121,26 @@ const Drawer = () => {
               </span>
             </li>
             {/*payment section  */}
-            <li className="font-semibold text-lg mb-3">
-              <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-violet-500">
-                <IoIosSpeedometer className="text-violet-500" size={20} />
-                <Link to="/adminPayment">Payment</Link>
-              </span>
-            </li>
+            <details className="dropdown mb-3">
+              <summary className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+              <IoIosSpeedometer className="text-violet-500 -ms-24" size={20} />
+               Payment Fees <MdArrowDropDown size={20} />
+              </summary>
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-blue-400 border rounded-box w-52 ">
+                <Link to="/pendingPayment">
+                  <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
+                    Pending Payment
+                  </li>
+                </Link>
+                <hr className="mt-1" />
+                <Link to="/approvedPayment">
+                  <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
+                    Approved Payment
+                  </li>
+                </Link>
+              </ul>
+            </details>
+            
           </ul>
         </div>
       </div>

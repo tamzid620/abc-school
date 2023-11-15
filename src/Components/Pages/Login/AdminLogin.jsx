@@ -34,48 +34,52 @@ function AdminLogin() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email:', email, 'Password:', password);
-    axios.post(`https://aspnzzpcvz.ap.loclx.io/api/login`, data)
-    .then(res => {
-        if (res.data.status === "201" ) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Successfully Logged In',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            if(res.data?.user?.role === "1"){
-              localStorage.setItem('user', JSON.stringify(res.data))
-              navigate('/studentDetails');
-            }else{
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "You are not eligible for this page",
-              });
-            }
-  localStorage.setItem('token', res.data.token);
-  localStorage.setItem('user', JSON.stringify(res.data));
-            navigate('/dp');
-        }
-        else if (res.data.status === "403") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Invalid Password",
-              });
-        }
+    console.log("Email:", email, "Password:", password);
+    axios.post(`https:/localhost:5000/api/login`, data).then((res) => {
+      if (res.data.status === "201") {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Logged In",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data));
         
-        else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                footer: "Access Denied",
-            });
+        if (res.data.user.role === "1") {
+          navigate("/dp");
+        } else if (res.data.user.role === "2") {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You are not eligible for this page",
+          });
         }
-    })
+  
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Logged In",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        
+      } else if (res.data.status === "403") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid Password",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: "Access Denied",
+        });
+      }
+    });
   };
 
   const backgroundStyles = {

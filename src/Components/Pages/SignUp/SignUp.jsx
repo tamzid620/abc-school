@@ -82,15 +82,15 @@ const SignUP = () => {
           timer: 1500,
         });
       });
-    // setName('');
-    // setfatherName('');
-    // setmotherName('');
-    // setBirthDate('');
-    // setEmail('');
-    // setPassword('');
-    // setphoneNo('');
-    // setImage('');
-    // setImage('');
+    setName('');
+    setfatherName('');
+    setmotherName('');
+    setBirthDate('');
+    setEmail('');
+    setPassword('');
+    setphoneNo('');
+    setImage('');
+    setImage('');
   };
 
   const backgroundStyles = {

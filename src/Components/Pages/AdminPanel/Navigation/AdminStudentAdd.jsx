@@ -6,13 +6,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const AdminStudentAdd = () => {
-
   const [adminStudents, setAdminStudents] = useState([]);
   const [name, setName] = useState("");
   const [fatherName, setfatherName] = useState("");
   const [motherName, setmotherName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [image, setImage] = useState("");
   const [phoneNo, setphoneNo] = useState("");
@@ -38,6 +38,9 @@ const AdminStudentAdd = () => {
   };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
@@ -113,6 +116,7 @@ const AdminStudentAdd = () => {
     data.append("motherName", motherName);
     data.append("birthDate", birthDate);
     data.append("email", email);
+    data.append("password", password);
     data.append("address", address);
     data.append("phoneNo", phoneNo);
     data.append("image", image);
@@ -136,6 +140,7 @@ const AdminStudentAdd = () => {
         setmotherName("");
         setBirthDate("");
         setEmail("");
+        setPassword("");
         setAddress("");
         setphoneNo("");
         setImage("");
@@ -294,16 +299,15 @@ const AdminStudentAdd = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="address">Address:</label>
+                  <label htmlFor="password">Password:</label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    // placeholder="Add address"
-                    required
-                    type="text"
-                    name="address"
-                    id="address"
-                    value={address}
-                    onChange={handleAddressChange}
+                    // placeholder="Your Password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={password}
+                    onChange={handlePasswordChange}
                   />
                 </div>
               </div>
@@ -366,6 +370,20 @@ const AdminStudentAdd = () => {
                     onChange={handleSectionChange}
                   />
                 </div>
+              </div>
+              {/* address section  */}
+              <div>
+                <label htmlFor="address">Address:</label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  // placeholder="Add address"
+                  required
+                  type="text"
+                  name="address"
+                  id="address"
+                  value={address}
+                  onChange={handleAddressChange}
+                />
               </div>
 
               {/* picture section  */}

@@ -42,7 +42,6 @@ import AdminEvent from "./Components/Pages/AdminPanel/Navigation/AdminEvent.jsx"
 import AdminRoutine from "./Components/Pages/AdminPanel/Navigation/AdminRoutine.jsx";
 import AdminSyllabus from "./Components/Pages/AdminPanel/Navigation/AdminSyllabus.jsx";
 import AdminExamination from "./Components/Pages/AdminPanel/Navigation/AdminExamination.jsx";
-import AdminPayment from "./Components/Pages/AdminPanel/Navigation/AdminPayment.jsx";
 import AdminEmployees from "./Components/Pages/AdminPanel/Navigation/AdminEmployees.jsx";
 import AdminEmployeesEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeesEdit.jsx";
 import AdminEmployeesAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeesAdd.jsx";
@@ -50,6 +49,8 @@ import AdminRoutineAdd from "./Components/Pages/AdminPanel/Navigation/AdminRouti
 import AdminRoutineEdit from "./Components/Pages/AdminPanel/Navigation/AdminRoutineEdit.jsx";
 import AdminSyllabusEdit from "./Components/Pages/AdminPanel/Navigation/AdminSyllabusEdit.jsx";
 import AdminSyllabusAdd from "./Components/Pages/AdminPanel/Navigation/AdminSyllabusAdd.jsx";
+import PendingPayment from "./Components/Pages/AdminPanel/Navigation/PendingPayment.jsx";
+import ApprovedPayment from "./Components/Pages/AdminPanel/Navigation/ApprovedPayment.jsx";
 
 const router = createBrowserRouter([
   {
@@ -251,10 +252,14 @@ const router = createBrowserRouter([
         path: "/adminExamination",
         element: <AdminExamination />,
       },
-      // admin payment section -----------------
+      // admin payment fees section -----------------
       {
-        path: "/adminPayment",
-        element: <AdminPayment />,
+        path: "/pendingPayment",
+        element:<PendingPayment/> ,
+      },
+      {
+        path: "/approvedPayment",
+        element: <ApprovedPayment/>,
       },
     ],
   },

@@ -1,14 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
-import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
-import Swal from "sweetalert2";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const AdminEmployees = () => {
-  const [adminEmployees, setAdminEmployees] = useState([]);
-
+const PendingPayment = () => {
+  const [pendPayments, setPendPayments] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,24 +26,22 @@ const AdminEmployees = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-
       axios
-        .get(`http://127.0.0.1:8000/api/admin-login`, {
+        .get(`http://127.0.0.1:8000/api/pending-payment-list`, {
           headers: headers,
         })
         .then((res) => {
-          setAdminEmployees(res.data);
+          setPendPayments(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, [navigate]);
+  console.log(pendPayments.payment);
 
-  console.log(adminEmployees);
-
-  // delete section
-  const handleDelete = (employeeId) => {
+  // approval section
+  const handleApprove = (paymentId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -53,58 +49,91 @@ const AdminEmployees = () => {
     };
 
     axios
-      .delete(`http://127.0.0.1:8000/api/delete-employee/${employeeId}`, {
+      .get(`http://127.0.0.1:8000/api/payment-approve/${paymentId}`, {
         headers: headers,
       })
       .then(() => {
-        setAdminEmployees((prevEmployees) =>
-          prevEmployees.filter(
-            (employee) => employee.employee_id !== employeeId
-          )
+        setPendPayments((prevPayments) =>
+          prevPayments.filter((payment) => payment.payment_id !== paymentId)
         );
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "employee deleted successfully",
+          title: "payment deleted successfully",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminEmployees");
+        window.location.reload();
       })
       .catch((error) => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting employee",
+          title: "Error deleting payment",
           text: error.message,
           showConfirmButton: true,
         });
-        navigate("/adminEmployees");
+      });
+  };
+
+  // delete section
+  const handleDecline = (paymentId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    axios
+      .delete(`http://127.0.0.1:8000/api/delete-payment/${paymentId}`, {
+        headers: headers,
+      })
+      .then(() => {
+        setPendPayments((prevPayments) =>
+          prevPayments.filter((payment) => payment.payment_id !== paymentId)
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "payment deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.reload();
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting payment",
+          text: error.message,
+          showConfirmButton: true,
+        });
       });
   };
 
   return (
     <div className="flex justify-between">
-      <div className=" w-full">
+      <div className="w-full">
         <Drawer />
       </div>
       {/* table div  */}
-      <div className="w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
+      <div className=" w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
         <div>
           <SearchPanel />
         </div>
         <div className="flex justify-center">
-          <div className="mt-20 w-full ">
-            {/* AdminemployeeInfo section  */}
+          <div className="mt-20 mx-2  w-full">
+            {/* AdminpaymentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              All employees
+              Pending Payment
             </h1>
             <hr className="border border-black mb-8" />
 
-            {/* add employees list section  */}
-            <div className="overflow-x-auto border ">
+            {/* table section  */}
+            <div className="overflow-x-auto lg:ms-0 md:ms-0 ">
               {/* search and add field  */}
-              <div className="flex justify-between items-center mx-3 mt-5">
+              <div className="flex justify-between items-center">
                 {/* search input  */}
                 <div className="form-control ms-3 my-3">
                   <div className="input-group">
@@ -131,66 +160,50 @@ const AdminEmployees = () => {
                     </button>
                   </div>
                 </div>
-                {/* add button  */}
-                <div>
-                  <Link to="/adminEmployeesAdd">
-                    <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                      Add
-                    </button>
-                  </Link>
-                </div>
               </div>
-
-              {/* tabel section  */}
               <table className="table ">
                 {/* head */}
                 <thead>
                   <tr>
-                    <th>Image</th>
+                    <th>Index</th>
                     <th>Name</th>
-                    <th>Designation</th>
-                    <th>Email</th>
+                    <th>Registration</th>
+                    <th>Class</th>
+                    <th>Transaction id</th>
+                    <th>Amount</th>
+                    <th>Month</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {adminEmployees.map((employee) => (
-                    <tr key={employee.id}>
-                      <div className="mask mask-squircle w-12 h-12">
-                        <td>
-                          {" "}
-                          <img
-                            src={employee.image}
-                            alt="teahcer's photo"
-                          />{" "}
-                        </td>
-                      </div>
-
-                      <td>{employee.name}</td>
-                      <td>{employee.designation}</td>
-                      <td>{employee.email}</td>
-                      <td>
-                        <div className="flex gap-2">
-                          {/* Edit button  */}
-                          <Link
-                            to={`/adminEmployeesEdit/${employee.id}`}
-                            // "/adminEmployeesEdit"
-                          >
-                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                              Edit
-                            </button>
-                          </Link>
-                          {/* Delete button   */}
+                  {pendPayments.payment &&
+                    pendPayments.payment.map((payment, index) => (
+                      <tr key={payment.id}>
+                        <td>{index + 1}</td>
+                        <td>{payment.name}</td>
+                        <td>{payment.class}</td>
+                        <td>{payment.regNo}</td>
+                        <td>{payment.transactionId}</td>
+                        <td>{payment.amount}</td>
+                        <td>{payment.month}</td>
+                        <td className="flex gap-2">
+                          {/* Approve button  */}
                           <button
-                            onClick={() => handleDelete(employee.id)}
+                            onClick={() => handleApprove(payment.id)}
+                            className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white"
+                          >
+                            Approve
+                          </button>
+                          {/* Delete button  */}
+                          <button
+                            onClick={() => handleDecline(payment.id)}
                             className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
                           >
-                            Delete
+                            Decline
                           </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -201,4 +214,4 @@ const AdminEmployees = () => {
   );
 };
 
-export default AdminEmployees;
+export default PendingPayment;

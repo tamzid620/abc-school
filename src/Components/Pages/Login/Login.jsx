@@ -46,19 +46,26 @@ const handleSubmit = (e) => {
               showConfirmButton: false,
               timer: 1500
           });
-          // if(res.data?.user?.role === "2"){
-          //   localStorage.setItem('user', JSON.stringify(res.data))
-          //   navigate('/studentDetails');
-          // }else{
-          //   Swal.fire({
-          //     icon: 'error',
-          //     title: 'Oops...',
-          //     text: "You are not eligible for this page",
-          //   });
-          // }
 localStorage.setItem('token', res.data.token);
 localStorage.setItem('user', JSON.stringify(res.data));
-          navigate('/studentDetails');
+if (res.data.user.role === "2") {
+  navigate('/studentDetails');
+} else if (res.data.user.role === "1") {
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "You are not eligible for this page",
+  });
+}
+
+Swal.fire({
+  position: "center",
+  icon: "success",
+  title: "Successfully Logged In",
+  showConfirmButton: false,
+  timer: 1500,
+});
+
       }
       else if (res.data.status === "403") {
           Swal.fire({
