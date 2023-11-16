@@ -78,6 +78,7 @@ const ApprovedPayment = () => {
       });
   };
 
+  // handle class change --------
   const handleClassChange = (event) => {
     const selectedClass = event.target.value;
     setSelectedClass(selectedClass);
@@ -199,7 +200,8 @@ const ApprovedPayment = () => {
                     <td colSpan="8" className="text-center">
                       No payments for the selected class.
                     </td>
-                  </tr>}
+                  </tr>
+                  }
                 </tbody>
               </table>
             </div>

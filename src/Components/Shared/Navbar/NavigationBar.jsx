@@ -29,28 +29,24 @@ const NavigationBar = () => {
     }
   };
 
-// responsive menu button  --------
-const toggleMenu = () => {
-  setMenuOpen(!menuOpen);
-};
+  // responsive menu button  --------
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <div className="flex items-center justify-between bg-blue-200 p-4 mt-3">
-      <nav >  
-        {/* menu button ----------------  */}
-
-      <button
+      <div>
+        {/* Menu Button */}
+        <button
+          className="lg:hidden hover:bg-blue-gray-100 rounded-xl px-2 py-1"
           onClick={toggleMenu}
-          className="text-2xl text-blue-gray-900 focus:outline-none lg:hidden "
         >
           <RiMenu2Fill />
         </button>
-
-        <div className={`lg:flex space-x-4 ${menuOpen ? "block" : "hidden lg:flex"}`} >
-          {/* Navigation Links */}
-          <ul 
-          className="lg:flex gap-2"tabIndex={0}
-          >
+        <nav className={`lg:flex ${menuOpen ? "block" : "hidden"}`}>
+          
+          <ul className="navul lg:flex gap-2">
             <Link to="/">
               <li className=" hover:bg-blue-gray-100 rounded-xl px-2 py-1">
                 Home
@@ -162,19 +158,18 @@ const toggleMenu = () => {
               </li>
             </Link>
           </ul>
-        </div>
-      </nav>
-        
-          {/* Signup and Login Buttons */}
-          <div className="flex space-x-2 ">
-            <button className="hover:bg-blue-gray-100 hover:text-black font-semibold rounded-xl bg-blue-gray-900 px-3 py-1 text-white">
-              <Link to="/registration">Sign Up</Link>
-            </button>
-            <button className="hover:bg-blue-gray-100 hover:text-black font-semibold rounded-xl bg-blue-gray-900 px-3 py-1 text-white">
-              <Link to="/login">Login</Link>
-            </button>
-          </div>
+        </nav>
+      </div>
 
+      {/* Signup and Login Buttons */}
+      <div className=" flex space-x-2">
+        <button className="hover:bg-blue-gray-100 hover:text-black font-semibold rounded-xl bg-blue-gray-900 px-3 py-1 text-white">
+          <Link to="/registration">Sign Up</Link>
+        </button>
+        <button className="hover:bg-blue-gray-100 hover:text-black font-semibold rounded-xl bg-blue-gray-900 px-3 py-1 text-white">
+          <Link to="/login">Login</Link>
+        </button>
+      </div>
     </div>
   );
 };
