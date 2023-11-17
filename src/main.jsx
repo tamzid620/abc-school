@@ -52,6 +52,7 @@ import AdminSyllabusAdd from "./Components/Pages/AdminPanel/Navigation/AdminSyll
 import PendingPayment from "./Components/Pages/AdminPanel/Navigation/PendingPayment.jsx";
 import ApprovedPayment from "./Components/Pages/AdminPanel/Navigation/ApprovedPayment.jsx";
 import PaymentHistory from "./Components/Pages/AdminPanel/Navigation/PaymentHistory.jsx";
+import Invoice from "./Components/Pages/AdminPanel/Invoice/Invoice.jsx";
 
 const router = createBrowserRouter([
   {
@@ -263,8 +264,12 @@ const router = createBrowserRouter([
         element: <ApprovedPayment/>,
       },
       {
-        path: "/paymentHistory",
+        path: "/paymentHistory/:studentId",
         element: <PaymentHistory/>,
+      },
+      {
+        path: "/invoice",
+        element: <Invoice/>,
       },
     ],
   },

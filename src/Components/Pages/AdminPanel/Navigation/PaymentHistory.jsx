@@ -1,7 +1,39 @@
+
+import { useParams } from "react-router-dom";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 const PaymentHistory = () => {
+
+    const { studentId } = useParams();
+
+    const [paymentHistoryData, setPaymentHistoryData] = useState([]);
+  
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+  
+      // get method -------------------
+      axios
+        .get(`http://127.0.0.1:8000/api/admin-student-detail/${studentId}`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setPaymentHistoryData(res.data);
+        })
+        .catch((error) => {
+          setPaymentHistoryData(error);
+        });
+    }, [studentId]);
+    console.log(paymentHistoryData);
+    
+
   return (
     <div className="flex justify-between">
       <div className="w-full">
@@ -82,13 +114,13 @@ const PaymentHistory = () => {
             </div>
 
             <div className="mt-10 flex justify-center gap-5">
-              <button className="btn bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white">
+              <button className="btn bg-red-300 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white">
                 ExcelShit
               </button>
-              <button className="btn bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+              <button className="btn bg-blue-300 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                 Send Message
               </button>
-              <button className="btn bg-yellow-800 text-gray-800 hover:border-black rounded-lg font-semibold uppercase hover:bg-yellow-500 hover:text-black">
+              <button className="btn bg-yellow-600 text-gray-800 hover:border-black rounded-lg font-semibold uppercase hover:bg-yellow-500 hover:text-black">
                 Send Email
               </button>
             </div>

@@ -2,7 +2,7 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ApprovedPayment = () => {
@@ -43,7 +43,7 @@ const ApprovedPayment = () => {
   console.log(apprPayments.payment);
 
   // approval section
-  const handleDetail = (paymentId) => {
+  const handleDetail = (studentId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -51,12 +51,12 @@ const ApprovedPayment = () => {
     };
 
     axios
-      .get(`http://127.0.0.1:8000/api/payment-detail/${paymentId}`, {
+      .get(`http://127.0.0.1:8000/api/payment-detail/${studentId}`, {
         headers: headers,
       })
       .then(() => {
         setApprPayments((prevPayments) =>
-          prevPayments.filter((payment) => payment.payment_id !== paymentId)
+          prevPayments.filter((payment) => payment.studentId !== studentId)
         );
         Swal.fire({
           position: "center",
@@ -103,7 +103,7 @@ const ApprovedPayment = () => {
           <div className="mt-20 mx-2  w-full">
             {/* AdminpaymentInfo section  */}
             <h1 className="mt-8 text-3xl font-semibold uppercase text-black flex justify-center ">
-              Pending Payment
+              Approved Payment
             </h1>
             <hr className="border border-black mb-8" />
 
@@ -186,13 +186,13 @@ const ApprovedPayment = () => {
                         <td>{payment.amount}</td>
                         <td>{payment.month}</td>
                         <td className="flex gap-2">
-                          {/* Approve button  */}
-                          <button
-                            onClick={() => handleDetail(payment.id)}
-                            className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white"
-                          >
-                            Approve
-                          </button>
+                        
+                           {/* Details button  */}
+                           <Link to={`/paymentHistory/${payment.studentId}`}>
+                            <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+                            Payment history
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     ))

@@ -55,7 +55,8 @@ const Layout = () => {
         location.pathname.includes('adminExamination') ||
         location.pathname.includes('pendingPayment') ||
         location.pathname.includes('approvedPayment') ||
-        location.pathname.includes('paymentHistory')
+        location.pathname.includes('paymentHistory') ||
+        location.pathname.includes('invoice')
 
     return (
         <div>
