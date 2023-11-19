@@ -60,8 +60,8 @@ const Layout = () => {
 
     return (
         <div>
-            {noHeaderFooter || <Navbar />}
-            {noHeaderFooter || <NavigationBar/>}
+            {/* {noHeaderFooter || <Navbar />} */}
+            {/* {noHeaderFooter || <NavigationBar/>} */}
             {noHeaderFooter || <NavDaisy/>}
             <Outlet />
             {noHeaderFooter || <Footer />}

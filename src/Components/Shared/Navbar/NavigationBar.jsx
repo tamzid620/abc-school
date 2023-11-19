@@ -44,11 +44,13 @@ const NavigationBar = () => {
         >
           <RiMenu2Fill />
         </button>
-        <nav className={`lg:flex ${menuOpen ? "block" : "hidden"}`}>
+        <nav 
+        className={`lg:flex ${menuOpen ? "block" : "hidden"}`}
+        >
           
           <ul className="navul lg:flex gap-2">
             <Link to="/">
-              <li className=" hover:bg-blue-gray-100 rounded-xl px-2 py-1">
+              <li className="hover:bg-blue-gray-100 rounded-xl px-2 py-1">
                 Home
               </li>
             </Link>

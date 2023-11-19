@@ -43,40 +43,40 @@ const ApprovedPayment = () => {
   console.log(apprPayments.payment);
 
   // approval section
-  const handleDetail = (studentId) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
+  // const handleDetail = (studentId) => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   const headers = {
+  //     accept: "application/json",
+  //     Authorization: "Bearer " + user.token,
+  //   };
 
-    axios
-      .get(`http://127.0.0.1:8000/api/payment-detail/${studentId}`, {
-        headers: headers,
-      })
-      .then(() => {
-        setApprPayments((prevPayments) =>
-          prevPayments.filter((payment) => payment.studentId !== studentId)
-        );
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "payment deleted successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        window.location.reload();
-      })
-      .catch((error) => {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Error deleting payment",
-          text: error.message,
-          showConfirmButton: true,
-        });
-      });
-  };
+  //   axios
+  //     .get(`http://127.0.0.1:8000/api/payment-detail/${studentId}`, {
+  //       headers: headers,
+  //     })
+  //     .then(() => {
+  //       setApprPayments((prevPayments) =>
+  //         prevPayments.filter((payment) => payment.studentId !== studentId)
+  //       );
+  //       Swal.fire({
+  //         position: "center",
+  //         icon: "success",
+  //         title: "payment deleted successfully",
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //       window.location.reload();
+  //     })
+  //     .catch((error) => {
+  //       Swal.fire({
+  //         position: "center",
+  //         icon: "error",
+  //         title: "Error deleting payment",
+  //         text: error.message,
+  //         showConfirmButton: true,
+  //       });
+  //     });
+  // };
 
   // handle class change --------
   const handleClassChange = (event) => {

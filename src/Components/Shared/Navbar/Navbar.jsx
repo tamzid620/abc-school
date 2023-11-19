@@ -151,6 +151,7 @@ const Navbar = () => {
 
       {/* navbar section  */}
       <div>
+        
         <div className="navbar bg-blue-200 relative z-10">
           <div className="navbar-start">
             <div className="dropdown">
@@ -215,6 +216,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
