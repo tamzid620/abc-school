@@ -138,6 +138,12 @@ const Drawer = () => {
                     Approved Payment
                   </li>
                 </Link>
+                <hr className="mt-1" />
+                <Link to="/unpaidStudent">
+                  <li className="py-2 font-bold text-md hover:bg-blue-500 rounded-xl ps-2">
+                    Unpaid Student
+                  </li>
+                </Link>
               </ul>
             </details>
             

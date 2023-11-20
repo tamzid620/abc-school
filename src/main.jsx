@@ -53,6 +53,7 @@ import PendingPayment from "./Components/Pages/AdminPanel/Navigation/PendingPaym
 import ApprovedPayment from "./Components/Pages/AdminPanel/Navigation/ApprovedPayment.jsx";
 import PaymentHistory from "./Components/Pages/AdminPanel/Navigation/PaymentHistory.jsx";
 import Invoice from "./Components/Pages/AdminPanel/Invoice/Invoice.jsx";
+import UnpaidStudent from "./Components/Pages/AdminPanel/Navigation/UnpaidStudent.jsx";
 
 const router = createBrowserRouter([
   {
@@ -262,6 +263,10 @@ const router = createBrowserRouter([
       {
         path: "/approvedPayment",
         element: <ApprovedPayment/>,
+      },
+      {
+        path: "/unpaidStudent",
+        element: <UnpaidStudent/>,
       },
       {
         path: "/paymentHistory/:studentId",

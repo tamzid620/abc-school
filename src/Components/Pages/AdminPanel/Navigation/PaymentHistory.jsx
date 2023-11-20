@@ -148,7 +148,7 @@ const PaymentHistory = () => {
 
             <div className="my-10 flex justify-center gap-5">
               <button className="btn bg-red-300 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white">
-                ExcelSheet
+                ExcelSheet 
               </button>
             </div>
           </div>
