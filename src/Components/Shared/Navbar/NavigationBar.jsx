@@ -201,7 +201,7 @@ const NavigationBar = () => {
 
         {/* Floating menu for small and medium devices */}
         {menuOpen && (
-          <div className="md:hidden absolute top-16 right-4 bg-blue-200 p-4 space-y-2 z-10">
+          <div className="md:hidden absolute bottom-[180px] right-4 bg-blue-200 p-4 space-y-2 z-10">
             <div className="hover:bg-blue-gray-100 rounded-xl px-2 py-1">
             <Link to="/">Home</Link>
             </div>

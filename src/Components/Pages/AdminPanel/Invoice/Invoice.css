@@ -1,7 +1,15 @@
+.school-title{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
 .top-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
   margin-bottom: 50px;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -18,7 +26,7 @@
   /* border: 1px solid black; */
 }
 .mLogo {
-  width: 80px;
+  width: 90px;
   margin-left: 5px;
 }
 .invoice {
@@ -26,6 +34,10 @@
   font-size: 60px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   margin-right: 5px;
+}
+.invoice-title{
+ margin-top: 10px;
+ text-align: end;
 }
 /* ----------------------------- */
 .billedTo-billedDate {
@@ -46,6 +58,11 @@
   margin-right: 5px;
   text-align: end;
 }
+.billedDate h1{
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /* --------------------------------- */
 .items {
   margin-top: 50px;
@@ -55,7 +72,6 @@
   border: 1px solid black;
   /* margin: 10px 0; */
 }
-
 .table-head-div {
   display: flex;
   justify-content: space-between;
