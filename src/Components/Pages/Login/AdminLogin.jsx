@@ -35,7 +35,7 @@ function AdminLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Email:", email, "Password:", password);
-    axios.post(`https:/localhost:5000/api/login`, data).then((res) => {
+    axios.post(`https://backend.ap.loclx.io/api/login`, data).then((res) => {
       if (res.data.status === "201") {
         Swal.fire({
           position: "center",

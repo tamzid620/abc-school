@@ -123,8 +123,11 @@ const Drawer = () => {
             {/*payment section  */}
             <details className="dropdown mb-3">
               <summary className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
-              <IoIosSpeedometer className="text-violet-500 -ms-24" size={20} />
-               Payment Fees <MdArrowDropDown size={20} />
+                <IoIosSpeedometer
+                  className="text-violet-500 -ms-24"
+                  size={20}
+                />
+                Payment Fees <MdArrowDropDown size={20} />
               </summary>
               <ul className="p-2 shadow menu dropdown-content z-[1] bg-blue-400 border rounded-box w-52 ">
                 <Link to="/pendingPayment">
@@ -146,7 +149,6 @@ const Drawer = () => {
                 </Link>
               </ul>
             </details>
-            
           </ul>
         </div>
       </div>

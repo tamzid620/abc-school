@@ -90,8 +90,7 @@ const AllStudent = () => {
         <Drawer />
       </div>
       {/* table div  */}
-      <div className="
-        w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
+      <div className=" w-full lg:-ms-[640px] md:-ms-[820px] sm: -ms-[400px]">
         <div>
           <SearchPanel />
         </div>
