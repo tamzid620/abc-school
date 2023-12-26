@@ -36,7 +36,7 @@ const AllStudent = () => {
           if (Array.isArray(res.data.student)) {
             setAllStudents(res.data.student);
           } else {
-            setAllStudents([]); // Ensure it's an array even if empty
+            setAllStudents([]);
           }
         })
         .catch((error) => {

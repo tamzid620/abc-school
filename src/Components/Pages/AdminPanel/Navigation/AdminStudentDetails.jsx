@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import Drawer from "../Dashboard/SearchPanel/Drawer";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
@@ -27,7 +26,7 @@ const AdminStudentDetails = () => {
         setStudentData(res.data);
       })
       .catch((error) => {
-        setStudentData(error);
+        console.log(error);
       });
   }, [studentId]);
   console.log(studentData);
